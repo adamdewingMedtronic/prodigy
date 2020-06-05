@@ -29,7 +29,7 @@ public abstract class Dao<T> {
      * @param o
      */
     public void saveOrUpdate(final T o){
-        getSession().saveOrUpdate(o);
+        getSession().save(o);
     }
 
     /**

@@ -24,6 +24,6 @@ public class HibernateUtil {
     }
 
     public static String getHibernateCfgXmlName(){
-        return "hibernate." + "local" + ".cfg.xml";
+        return "hibernate." + "app" + ".cfg.xml";
     }
 }

@@ -19,6 +19,7 @@
 		<hapi.version>4.2.0</hapi.version>
 		<jackson.version>2.11.0</jackson.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<iris.health.jars>${project.basedir}/src/main/resources</iris.health.jars>
 	</properties>
 
 	<dependencies>
@@ -27,12 +28,12 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-devtools</artifactId>-->
+<!--			<scope>runtime</scope>-->
+<!--			<optional>true</optional>-->
+<!--		</dependency>-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -64,6 +65,57 @@
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
 			<version>2.9.2</version>
+		</dependency>
+
+		<!-- Intersystem jars will be available from Intersystems, and so the system scope is the correct scope. -->
+		<dependency>
+			<groupId>com.intersystems</groupId>
+			<artifactId>intersystems-enslib-jms</artifactId>
+			<version>3.1.0</version>
+			<scope>system</scope>
+			<systemPath>${iris.health.jars}/intersystems-enslib-jms-3.1.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.intersystems</groupId>
+			<artifactId>intersystems-gateway</artifactId>
+			<version>3.1.0</version>
+			<scope>system</scope>
+			<systemPath>${iris.health.jars}/intersystems-gateway-3.1.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.intersystems</groupId>
+			<artifactId>intersystems-jdbc</artifactId>
+			<version>3.1.0</version>
+			<scope>system</scope>
+			<systemPath>${iris.health.jars}/intersystems-jdbc-3.1.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.intersystems</groupId>
+			<artifactId>intersystems-spark</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${iris.health.jars}/intersystems-spark-1.0.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.intersystems</groupId>
+			<artifactId>intersystems-uima</artifactId>
+			<version>1.0.0</version>
+			<scope>system</scope>
+			<systemPath>${iris.health.jars}/intersystems-uima-1.0.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.intersystems</groupId>
+			<artifactId>intersystems-utils</artifactId>
+			<version>3.1.0</version>
+			<scope>system</scope>
+			<systemPath>${iris.health.jars}/intersystems-utils-3.1.0.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.intersystems</groupId>
+			<artifactId>intersystems-xep</artifactId>
+			<version>3.1.0</version>
+			<scope>system</scope>
+			<systemPath>${iris.health.jars}/intersystems-xep-3.1.0.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -100,7 +152,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.2.12.Final</version>
+			<version>5.4.17.Final</version>
 		</dependency>
 
 	</dependencies>
