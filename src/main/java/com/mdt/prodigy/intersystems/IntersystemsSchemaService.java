@@ -3,9 +3,7 @@ package com.mdt.prodigy.intersystems;
 import com.mdt.prodigy.service.H2SchemaService;
 import com.mdt.prodigy.service.ISChemaService;
 import com.mdt.prodigy.service.IntersystemsDBSchemaService;
-import org.springframework.stereotype.Service;
 
-@Service
 public class IntersystemsSchemaService extends BaseIntersystemsService implements IIntersystemsService{
 
     private ISChemaService schemaService;

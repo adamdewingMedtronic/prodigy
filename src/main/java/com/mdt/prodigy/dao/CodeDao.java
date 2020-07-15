@@ -7,6 +7,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class CodeDao extends Dao<Code> {
         predicates[0] = cb.equal(root.get("type"), type);
         criteria.select(root).where(predicates);
         List<Code> data = getSession().createQuery(criteria).getResultList();
-        return data == null ? Collections.emptyList() : data;
+        return data == null ? new ArrayList<Code>() : data;
     }
 
     public @NotNull List<Code> findByTypeCodeContains(String type, String codeContains){
@@ -33,10 +34,10 @@ public class CodeDao extends Dao<Code> {
         Root<Code> root = criteria.from(getClassType());
         Predicate[] predicates = new Predicate[2];
         predicates[0] = cb.equal(root.get("type"), type);
-        predicates[1] = cb.like(root.get("value"), codeContains);
+        predicates[1] = cb.like(root.<String>get("value"), codeContains);
         criteria.select(root).where(predicates);
         List<Code> data = getSession().createQuery(criteria).getResultList();
-        return data == null ? Collections.emptyList() : data;
+        return data == null ? new ArrayList<Code>() : data;
     }
 }
 

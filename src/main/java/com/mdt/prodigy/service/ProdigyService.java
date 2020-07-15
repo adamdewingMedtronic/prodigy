@@ -4,43 +4,23 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mdt.fhir.resource.MedicationStatementHelper;
 import com.mdt.fhir.resource.PatientHelper;
-import com.mdt.prodigy.Type;
-import com.mdt.prodigy.dao.CodeDao;
+import com.mdt.prodigy.dto.HeartFailureCodes;
+import com.mdt.prodigy.dto.OpiodCodes;
+import com.mdt.prodigy.dto.Risk;
+import com.mdt.prodigy.dto.SleepDisorderCodes;
 import com.mdt.prodigy.dto.card.Cards;
 import com.mdt.prodigy.dto.card.ProdigyResponseCard;
 import com.mdt.prodigy.dto.request.CDSServiceRequest;
-import com.mdt.prodigy.entity.Code;
-import com.mdt.prodigy.util.HibernateUtil;
-import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Transaction;
+import com.mdt.prodigy.enums.RiskType;
 import org.hl7.fhir.dstu3.model.Bundle;
-import org.hl7.fhir.dstu3.model.CodeableConcept;
-import org.hl7.fhir.dstu3.model.Coding;
 import org.hl7.fhir.dstu3.model.Patient;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
-@Service
 public class ProdigyService implements IProdigyService {
 
-    private CodeDao codeDao = new CodeDao();
-    private List<Code> opiodCodes = null;       // This is only loaded during object creation in the constructor.
-
-    public ProdigyService() {
-//        loadOpiodCodes();
-    }
-
-    private List<Code> getOpiodCodes(){
-        if(opiodCodes == null){
-            loadOpiodCodes();
-        }
-        return opiodCodes;
-    }
 
     @Override
     public Cards getORIDCards(CDSServiceRequest request) {
@@ -53,31 +33,74 @@ public class ProdigyService implements IProdigyService {
         cards.getCards().add(card);
         FhirContext ctx = FhirContext.forDstu3();
         IParser parser = ctx.newJsonParser();
-        log.debug(request.getPrefetch().getPatient().toString());
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            patient = parser.parseResource(Patient.class, objectMapper.writeValueAsString(request.getPrefetch().getPatient()));
-            medications = parser.parseResource(Bundle.class, objectMapper.writeValueAsString(request.getPrefetch().getMedications()));
-            conditions = parser.parseResource(Bundle.class, objectMapper.writeValueAsString(request.getPrefetch().getConditions()));
-            conditionsEnc = parser.parseResource(Bundle.class, objectMapper.writeValueAsString(request.getPrefetch().getConditionsEnc()));
+            System.out.println(request.getPrefetch().getPatient());
+            if (request.getPrefetch() != null) {
+                if (request.getPrefetch().getPatient() != null) {
+                    patient = parser.parseResource(Patient.class, objectMapper.writeValueAsString(request.getPrefetch().getPatient()));
+                }
+                if (request.getPrefetch().getMedications() != null) {
+                    medications = parser.parseResource(Bundle.class, objectMapper.writeValueAsString(request.getPrefetch().getMedications()));
+                }
+                if (request.getPrefetch().getConditions() != null) {
+                    conditions = parser.parseResource(Bundle.class, objectMapper.writeValueAsString(request.getPrefetch().getConditions()));
+                }
+                if (request.getPrefetch().getConditionsEnc() != null) {
+                    conditionsEnc = parser.parseResource(Bundle.class, objectMapper.writeValueAsString(request.getPrefetch().getConditionsEnc()));
+                }
+            }
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+        List<Risk> risks = calculateOIRDRisk(patient, medications, conditions, conditionsEnc);
 
-        card.setSummary(getSummary(calculateOIRDRisk(patient, medications, conditions, conditionsEnc)));
-        card.setDetail("<div style=\\\"width: 700px; background: #FFFFF7;\\\">    <div style=\\\"height: 80px; font-size:24px; font-weight: bold; line-height: 40px; padding-left: 40px; color: black;\\\">        PRODIGY    </div>    <div style=\\\"height:220px; width: 80%; text-align: center; background: clear; margin: auto;\\\">        <div style=\\\"height:240px; width: 45%; background: clear; float: left;\\\">            <div                style=\\\"height:80px; width:80px; text-align: center; background: #E30504; border-radius: 80px; font-size: 36px; font-weight: bold; color: #fff; line-height: 80px; margin: auto;\\\">20            </div>            <h4 style=\\\"color: black; font-weight: lighter;\\\">PRODIGY SCORE</h4>            <h4 style=\\\"color: #E30504;\\\">HIGH RISK</h4>        </div>        <div style=\\\"height:240px; width: 55%; background: clear; float: left;\\\">            <p style=\\\"color: black; text-align: left;\\\">This patient is at HIGH RISK for opioid-induced respiratory depression. Consider placing the patient on capnography monitoring.</p>            <p style=\\\"color: #308DCD; text-align: left;\\\">Capnography Monitoring Policy</p>            <p style=\\\"text-align: left;\\\"><a style=\\\"color: #308DCD;\\\" href=\\\"https://www.medtronic.com/content/dam/covidien/library/us/en/product/capnography-monitoring/microstream-capnography-breath-monitoring-matters-info-sheet.pdf\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">About Capnography</a></p>            <div style=\\\"height:55px; width: 100%; background: #EEEEEE;\\\">                <table style=\\\"width: 100%; height: 100%; font-size: 11px\\\">                    <tr>                        <td colspan=\\\"3\\\" style=\\\"font-weight: bold; color: grey; text-align: left;\\\">SCORE TIER LEGEND</td>                    </tr>                    <tr>                        <td style= \\\"text-align: left; color: grey; line-height: 12px;\\\">                            <div style=\\\"height:12px; width:12px; background: #77BC1F; border-radius: 12px; line-height: 12px; float: left;\\\"></div><span style=\\\"padding-left: 4px;\\\">0-7</span><span style=\\\"font-weight: bold; padding-left: 4px;\\\">Low</span>                        </td>                        <td style= \\\"text-align: left; color: grey; line-height: 12px;\\\">                            <div style=\\\"height:12px; width:12px; background: #F7A801; border-radius: 12px; line-height: 12px; float: left;\\\"></div><span style=\\\"padding-left: 4px;\\\">8-14</span><span style=\\\"font-weight: bold; padding-left: 4px;\\\">Intermediate</span>                        </td>                        <td style= \\\"text-align: left; color: grey; line-height: 12px;\\\">                            <div style=\\\"height:12px; width:12px; background: #E30504; border-radius: 12px; line-height: 12px; float: left;\\\"></div><span style=\\\"padding-left: 4px;\\\">15+</span><span style=\\\"font-weight: bold; padding-left: 4px;\\\">High</span>                        </td>                    </tr>                </table>            </div>        </div>    </div>    <div style=\\\"height:200px; width: 80%; background: clear; margin: auto;\\\">        <table style=\\\"width: 100%;\\\">            <tr>                <td style=\\\"font-weight: bold; color: grey; width: 45%;\\\">COMPONENT</td>                <td colspan=\\\"2\\\" style=\\\"color: grey;\\\"><span style=\\\"font-weight: bold;\\\"> SCORE</span> / VALUE</td>            </tr>            <tr>                <td rowspan=\\\"2\\\" style=\\\"font-weight: bold; color: black;\\\">Age</td>                <td style= \\\"color: grey;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">16</span>80 +</td>                <td style= \\\"color: grey;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">8</span>60 - 69</td>            </tr>            <tr>                <td style= \\\"color: grey; color: black; background: #FACE03;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">12</span>70 - 79</td>                <td style= \\\"color: grey;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>< 60</td> </tr> <tr>                <td style=\\\"font-weight: bold; color: black;\\\">Sex</td>                <td style= \\\"color: grey; color: black; background: #FACE03;\\\"><span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">8</span>Male</td>                <td style= \\\"color: grey;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>Female or Unk</td>            </tr>            <tr>                <td style=\\\"font-weight: bold; color: black;\\\">Opioid Naive</td>                <td style= \\\"color: grey;\\\"><span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">3</span>Yes</td>                <td style= \\\"color: grey; color: black; background: #FACE03;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>No</td>            </tr>            <tr>                <td style=\\\"font-weight: bold; color: black;\\\">Sleep Disorder</td>                <td style= \\\"color: grey;\\\"><span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">5</span>Yes</td>                <td style= \\\"color: grey; color: black; background: #FACE03;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>No</td>            </tr>            <tr>                <td style=\\\"font-weight: bold; color: black;\\\">Chronic Heart Failure</td>                <td style= \\\"color: grey;\\\"><span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">7</span>Yes</td>                <td style= \\\"color: grey; color: black; background: #FACE03;\\\"><span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>No</td>            </tr>        </table>    </div></div>");
+        int riskScore = 0;
+        for(Risk risk : risks){
+            riskScore += risk.getScore();
+        }
+
+        card.setSummary(getSummary(riskScore));
+        card.setDetail(buildHTML(risks, riskScore, card.getSummary()));
         return cards;
     }
 
+    private String buildHTML(List<Risk> risks, int riskScore, String riskText){
+        String html = getBaseHtml();
+        html.replaceAll("RISK_TEXT", riskText);
+        html.replaceAll("RISK_SCORE", String.valueOf(riskScore));
+        if(riskScore >= 8){
+            html.replaceAll("CAPNOGRAPHY_MONITORING", "Consider placing the patient on capnography monitoring.");
+        }else{
+            html.replaceAll("CAPNOGRAPHY_MONITORING", "");
+        }
+        System.out.println(html);
+        return html;
+    }
+
+    private String getSummary(int risk) {
+        // TODO
+        System.out.println("risk:" + risk);
+        String riskText = null;
+        if (risk >= 15) {
+            riskText = "HIGH RISK";
+        } else if (risk >= 8 && risk <= 14) {
+            riskText = "INTERDIATE RISK";
+        } else if (risk < 8) {
+            riskText = "LOW RISK";
+        }
+        return riskText;
+    }
+
     @Override
-    public int calculateOIRDRisk(Patient patient, Bundle medications, Bundle conditions, Bundle conditionsEnc) {
-        int risk = 0;
-        risk += ageRisk(patient);
-        risk += sexRisk(patient);
-        risk += opiodNaiveRisk(medications);
-        risk += sleepDisorderRisk(conditions);
-        risk += chronicHeartFailureRisk(conditions);
-        return risk;
+    public List<Risk> calculateOIRDRisk(Patient patient, Bundle medications, Bundle conditions, Bundle conditionsEnc) {
+        List<Risk> risks = new ArrayList<>();
+        risks.add(new Risk(ageRisk(patient), RiskType.AGE));
+        risks.add(new Risk(sexRisk(patient), RiskType.SEX));
+        risks.add(new Risk(chronicHeartFailureRisk(conditions), RiskType.CHRONIC_HEART_FAILURE));
+        risks.add(new Risk(opiodNaiveRisk(medications), RiskType.OPIOD_NAIVE));
+        risks.add(new Risk(chronicHeartFailureRisk(conditions), RiskType.SLEEP_DISORDER));
+        return risks;
     }
 
     private int ageRisk(Patient patient) {
@@ -88,7 +111,7 @@ public class ProdigyService implements IProdigyService {
             return 12;
         } else if (age >= 60) {
             return 8;
-        } else {
+        }else {
             return 0;
         }
     }
@@ -109,19 +132,6 @@ public class ProdigyService implements IProdigyService {
         return isChronicHeartFailure(bundle) ? 7 : 0;
     }
 
-    private String getSummary(int risk) {
-        // TODO
-        String riskText = null;
-        if (risk >= 15) {
-            riskText = "High Risk";
-        } else if (risk >= 8 && risk <= 14) {
-            riskText = "Intermediate Risk";
-        } else if (risk < 8) {
-            riskText = "Low Risk";
-        }
-        return riskText;
-    }
-
     private int getAge(Patient patient) {
         PatientHelper patientHelper = new PatientHelper(patient);
         return patientHelper.getAge();
@@ -139,50 +149,148 @@ public class ProdigyService implements IProdigyService {
      * @return True if the bundle does not contain any MedicationStatements that are opiods.
      */
     private boolean isOpiodNaive(Bundle bundle) {
-        MedicationStatementHelper medicationStatementHelper = new MedicationStatementHelper(bundle);
-        // Check Medication display names.
-        List<String> medications = medicationStatementHelper.getMedicationDisplayNames();
-        for (String medication : medicationStatementHelper.getMedicationDisplayNames()) {
-            for (Code code : getOpiodCodes()) {
-//                if (code.getValue().contains(medication)) {
-//                    return false;
-//                }
+        if(bundle == null){
+            return true;
+        }
+        String data = bundle.toString();
+        for (String value : OpiodCodes.values) {
+            if (data.contains(value)) {
+                return true;
             }
         }
-
-        // Check Medication codes.
-        List<String> medicationCodes = new ArrayList<>();
-        for (CodeableConcept codeableConcept : medicationStatementHelper.getMedicationsCodeableConcepts()) {
-            for(Coding coding : codeableConcept.getCoding()){
-                //TODO
-            }
-            for(Code code : getOpiodCodes()){
-
-            }
-        }
-
-        return true;
-    }
-
-    private boolean isSleepDisorderRisk(Bundle bundle) {
-        //TODO
-        return Math.random() > .5 ? true : false;
+        return false;
     }
 
     private boolean isSleepDisorder(Bundle bundle) {
-        //TODO
-        return Math.random() > .5 ? true : false;
+        if(bundle == null){
+            return false;
+        }
+        String data = bundle.toString();
+        for (String value : SleepDisorderCodes.values) {
+            if (data.contains(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isChronicHeartFailure(Bundle bundle) {
-        //TODO
-        return Math.random() > .5 ? true : false;
+        if(bundle == null){
+            return false;
+        }
+        String data = bundle.toString();
+        for (String value : HeartFailureCodes.values) {
+            if (data.contains(value)) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    private void loadOpiodCodes() {
-        Transaction transaction = HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
-        this.opiodCodes = codeDao.findByType(Type.OPIOD_TYPE.getDescription());
-        transaction.commit();
+    private String getBaseHtml(){
+        return "<div style=\\\"width: 700px; background: #FFFFF7;\\\">\n" +
+                "\t<div style=\\\"height: 80px; font-size:24px; font-weight: bold; line-height: 40px; padding-left: 40px; color: black;\\\">        PRODIGY    </div>\n" +
+                "\t<div style=\\\"height:220px; width: 80%; text-align: center; background: clear; margin: auto;\\\">\n" +
+                "\t\t<div style=\\\"height:240px; width: 45%; background: clear; float: left;\\\">\n" +
+                "\t\t\t<div                style=\\\"height:80px; width:80px; text-align: center; background: #E30504; border-radius: 80px; font-size: 36px; font-weight: bold; color: #fff; line-height: 80px; margin: auto;\\\">20            </div>\n" +
+                "\t\t\t<h4 style=\\\"color: black; font-weight: lighter;\\\">PRODIGY SCORE</h4>\n" +
+                "\t\t\t<h4 style=\\\"color: #E30504;\\\">${risk_text}</h4>\n" +
+                "\t\t</div>\n" +
+                "\t\t<div style=\\\"height:240px; width: 55%; background: clear; float: left;\\\">\n" +
+                "\t\t\t<p style=\\\"color: black; text-align: left;\\\">This patient is at ${risk_text} for opioid-induced respiratory depression. Consider placing the patient on capnography monitoring.</p>\n" +
+                "\t\t\t<p style=\\\"color: #308DCD; text-align: left;\\\">Capnography Monitoring Policy</p>\n" +
+                "\t\t\t<p style=\\\"text-align: left;\\\">\n" +
+                "\t\t\t\t<a style=\\\"color: #308DCD;\\\" href=\\\"https://www.medtronic.com/content/dam/covidien/library/us/en/product/capnography-monitoring/microstream-capnography-breath-monitoring-matters-info-sheet.pdf\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">About Capnography</a>\n" +
+                "\t\t\t</p>\n" +
+                "\t\t\t<div style=\\\"height:55px; width: 100%; background: #EEEEEE;\\\">\n" +
+                "\t\t\t\t<table style=\\\"width: 100%; height: 100%; font-size: 11px\\\">\n" +
+                "\t\t\t\t\t<tr>\n" +
+                "\t\t\t\t\t\t<td colspan=\\\"3\\\" style=\\\"font-weight: bold; color: grey; text-align: left;\\\">SCORE TIER LEGEND</td>\n" +
+                "\t\t\t\t\t</tr>\n" +
+                "\t\t\t\t\t<tr>\n" +
+                "\t\t\t\t\t\t<td style= \\\"text-align: left; color: grey; line-height: 12px;\\\">\n" +
+                "\t\t\t\t\t\t\t<div style=\\\"height:12px; width:12px; background: #77BC1F; border-radius: 12px; line-height: 12px; float: left;\\\"></div>\n" +
+                "\t\t\t\t\t\t\t<span style=\\\"padding-left: 4px;\\\">0-7</span>\n" +
+                "\t\t\t\t\t\t\t<span style=\\\"font-weight: bold; padding-left: 4px;\\\">Low</span>\n" +
+                "\t\t\t\t\t\t</td>\n" +
+                "\t\t\t\t\t\t<td style= \\\"text-align: left; color: grey; line-height: 12px;\\\">\n" +
+                "\t\t\t\t\t\t\t<div style=\\\"height:12px; width:12px; background: #F7A801; border-radius: 12px; line-height: 12px; float: left;\\\"></div>\n" +
+                "\t\t\t\t\t\t\t<span style=\\\"padding-left: 4px;\\\">8-14</span>\n" +
+                "\t\t\t\t\t\t\t<span style=\\\"font-weight: bold; padding-left: 4px;\\\">Intermediate</span>\n" +
+                "\t\t\t\t\t\t</td>\n" +
+                "\t\t\t\t\t\t<td style= \\\"text-align: left; color: grey; line-height: 12px;\\\">\n" +
+                "\t\t\t\t\t\t\t<div style=\\\"height:12px; width:12px; background: #E30504; border-radius: 12px; line-height: 12px; float: left;\\\"></div>\n" +
+                "\t\t\t\t\t\t\t<span style=\\\"padding-left: 4px;\\\">15+</span>\n" +
+                "\t\t\t\t\t\t\t<span style=\\\"font-weight: bold; padding-left: 4px;\\\">High</span>\n" +
+                "\t\t\t\t\t\t</td>\n" +
+                "\t\t\t\t\t</tr>\n" +
+                "\t\t\t\t</table>\n" +
+                "\t\t\t</div>\n" +
+                "\t\t</div>\n" +
+                "\t</div>\n" +
+                "\t<div style=\\\"height:200px; width: 80%; background: clear; margin: auto;\\\">\n" +
+                "\t\t<table style=\\\"width: 100%;\\\">\n" +
+                "\t\t\t<tr>\n" +
+                "\t\t\t\t<td style=\\\"font-weight: bold; color: grey; width: 45%;\\\">COMPONENT</td>\n" +
+                "\t\t\t\t<td colspan=\\\"2\\\" style=\\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold;\\\"> SCORE</span> / VALUE\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t</tr>\n" +
+                "\t\t\t<tr>\n" +
+                "\t\t\t\t<td rowspan=\\\"2\\\" style=\\\"font-weight: bold; color: black;\\\">Age</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">16</span>80 +\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">8</span>60 - 69\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t</tr>\n" +
+                "\t\t\t<tr>\n" +
+                "\t\t\t\t<td style= \\\"color: grey; color: black; background: #FACE03;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">12</span>70 - 79\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>< 60\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t</tr>\n" +
+                "\t\t\t<tr>\n" +
+                "\t\t\t\t<td style=\\\"font-weight: bold; color: black;\\\">Sex</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey; color: black; background: #FACE03;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">8</span>Male\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>Female or Unk\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t</tr>\n" +
+                "\t\t\t<tr>\n" +
+                "\t\t\t\t<td style=\\\"font-weight: bold; color: black;\\\">Opioid Naive</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">3</span>Yes\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey; color: black; background: #FACE03;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>No\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t</tr>\n" +
+                "\t\t\t<tr>\n" +
+                "\t\t\t\t<td style=\\\"font-weight: bold; color: black;\\\">Sleep Disorder</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">5</span>Yes\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey; color: black; background: #FACE03;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>No\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t</tr>\n" +
+                "\t\t\t<tr>\n" +
+                "\t\t\t\t<td style=\\\"font-weight: bold; color: black;\\\">Chronic Heart Failure</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 26px; padding-left: 4px;\\\">7</span>Yes\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t\t<td style= \\\"color: grey; color: black; background: #FACE03;\\\">\n" +
+                "\t\t\t\t\t<span style=\\\"font-weight: bold; padding-right: 20px; padding-left: 4px;\\\">0</span>No\n" +
+                "\t\t\t\t</td>\n" +
+                "\t\t\t</tr>\n" +
+                "\t\t</table>\n" +
+                "\t</div>\n" +
+                "</div>";
     }
-
 }

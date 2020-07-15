@@ -1,4 +1,4 @@
-package com.mdt.prodigy;
+package com.mdt.prodigy.enums;
 
 import lombok.Getter;
 

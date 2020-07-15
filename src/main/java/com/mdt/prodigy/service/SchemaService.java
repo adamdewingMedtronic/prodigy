@@ -1,13 +1,11 @@
 package com.mdt.prodigy.service;
 
-import com.mdt.prodigy.Type;
+import com.mdt.prodigy.enums.Type;
 import com.mdt.prodigy.dao.CodeDao;
 import com.mdt.prodigy.entity.Code;
-import com.mdt.prodigy.entity.CodePK;
 import com.mdt.prodigy.util.HibernateUtil;
 import com.mdt.prodigy.util.LoadCsv;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import java.util.List;
