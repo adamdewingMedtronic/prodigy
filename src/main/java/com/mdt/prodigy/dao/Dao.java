@@ -50,7 +50,7 @@ public abstract class Dao<T> {
      * @return
      */
     public List<T> findAll() {
-        CriteriaBuilder builder = getSession().getCriteriaBuilder();
+        CriteriaBuilder builder = getSession(). getCriteriaBuilder();
         CriteriaQuery<T> criteria = builder.createQuery(getClassType());
         criteria.from(getClassType());
         List<T> data = getSession().createQuery(criteria).getResultList();

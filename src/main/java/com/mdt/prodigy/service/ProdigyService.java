@@ -4,19 +4,43 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mdt.fhir.resource.MedicationStatementHelper;
 import com.mdt.fhir.resource.PatientHelper;
-import com.mdt.prodigy.dto.card.Card;
+import com.mdt.prodigy.Type;
+import com.mdt.prodigy.dao.CodeDao;
 import com.mdt.prodigy.dto.card.Cards;
 import com.mdt.prodigy.dto.card.ProdigyResponseCard;
 import com.mdt.prodigy.dto.request.CDSServiceRequest;
+import com.mdt.prodigy.entity.Code;
+import com.mdt.prodigy.util.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Transaction;
 import org.hl7.fhir.dstu3.model.Bundle;
+import org.hl7.fhir.dstu3.model.CodeableConcept;
+import org.hl7.fhir.dstu3.model.Coding;
 import org.hl7.fhir.dstu3.model.Patient;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Slf4j
 @Service
-public class ProdigyService implements IProdigyService{
+public class ProdigyService implements IProdigyService {
+
+    private CodeDao codeDao = new CodeDao();
+    private List<Code> opiodCodes = null;       // This is only loaded during object creation in the constructor.
+
+    public ProdigyService() {
+//        loadOpiodCodes();
+    }
+
+    private List<Code> getOpiodCodes(){
+        if(opiodCodes == null){
+            loadOpiodCodes();
+        }
+        return opiodCodes;
+    }
 
     @Override
     public Cards getORIDCards(CDSServiceRequest request) {
@@ -64,67 +88,101 @@ public class ProdigyService implements IProdigyService{
             return 12;
         } else if (age >= 60) {
             return 8;
-        }else{
+        } else {
             return 0;
         }
     }
 
-    private int sexRisk(Patient patient){
+    private int sexRisk(Patient patient) {
         return "male".equalsIgnoreCase(getSex(patient)) ? 8 : 0;
     }
 
-    private int opiodNaiveRisk(Bundle bundle){
+    private int opiodNaiveRisk(Bundle bundle) {
         return isOpiodNaive(bundle) ? 3 : 0;
     }
 
-    private int sleepDisorderRisk(Bundle bundle){
+    private int sleepDisorderRisk(Bundle bundle) {
         return isSleepDisorder(bundle) ? 5 : 0;
     }
 
-    private int chronicHeartFailureRisk(Bundle bundle){
+    private int chronicHeartFailureRisk(Bundle bundle) {
         return isChronicHeartFailure(bundle) ? 7 : 0;
     }
 
-    private String getSummary(int risk){
+    private String getSummary(int risk) {
         // TODO
         String riskText = null;
-        if(risk >= 15){
+        if (risk >= 15) {
             riskText = "High Risk";
-        }else if(risk >= 8 && risk <= 14){
+        } else if (risk >= 8 && risk <= 14) {
             riskText = "Intermediate Risk";
-        }else if(risk < 8){
+        } else if (risk < 8) {
             riskText = "Low Risk";
         }
         return riskText;
     }
 
-    private int getAge(Patient patient){
+    private int getAge(Patient patient) {
         PatientHelper patientHelper = new PatientHelper(patient);
         return patientHelper.getAge();
     }
 
-    private String getSex(Patient patient){
+    private String getSex(Patient patient) {
         PatientHelper patientHelper = new PatientHelper(patient);
         return patientHelper.getGender();
     }
 
-    private boolean isOpiodNaive(Bundle bundle){
+    /**
+     * Determines if the bundle contains MedicationStatements that contain opiods.
+     *
+     * @param bundle
+     * @return True if the bundle does not contain any MedicationStatements that are opiods.
+     */
+    private boolean isOpiodNaive(Bundle bundle) {
+        MedicationStatementHelper medicationStatementHelper = new MedicationStatementHelper(bundle);
+        // Check Medication display names.
+        List<String> medications = medicationStatementHelper.getMedicationDisplayNames();
+        for (String medication : medicationStatementHelper.getMedicationDisplayNames()) {
+            for (Code code : getOpiodCodes()) {
+//                if (code.getValue().contains(medication)) {
+//                    return false;
+//                }
+            }
+        }
+
+        // Check Medication codes.
+        List<String> medicationCodes = new ArrayList<>();
+        for (CodeableConcept codeableConcept : medicationStatementHelper.getMedicationsCodeableConcepts()) {
+            for(Coding coding : codeableConcept.getCoding()){
+                //TODO
+            }
+            for(Code code : getOpiodCodes()){
+
+            }
+        }
+
+        return true;
+    }
+
+    private boolean isSleepDisorderRisk(Bundle bundle) {
         //TODO
         return Math.random() > .5 ? true : false;
     }
 
-    private boolean isSleepDisorderRisk(Bundle bundle){
+    private boolean isSleepDisorder(Bundle bundle) {
         //TODO
         return Math.random() > .5 ? true : false;
     }
 
-    private boolean isSleepDisorder(Bundle bundle){
+    private boolean isChronicHeartFailure(Bundle bundle) {
         //TODO
         return Math.random() > .5 ? true : false;
     }
 
-    private boolean isChronicHeartFailure(Bundle bundle){
-        //TODO
-        return Math.random() > .5 ? true : false;
+    private void loadOpiodCodes() {
+        Transaction transaction = HibernateUtil.getSessionFactory().getCurrentSession().beginTransaction();
+        this.opiodCodes = codeDao.findByType(Type.OPIOD_TYPE.getDescription());
+        transaction.commit();
     }
+
 }

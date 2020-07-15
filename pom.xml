@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>com.mdt</groupId>
 	<artifactId>taymyr</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>taymyr</name>
 	<description>Taymyr microservice</description>
 
@@ -27,13 +26,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-devtools</artifactId>-->
-<!--			<scope>runtime</scope>-->
-<!--			<optional>true</optional>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
@@ -88,13 +86,6 @@
 			<version>3.1.0</version>
 			<scope>system</scope>
 			<systemPath>${iris.health.jars}/intersystems-jdbc-3.1.0.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>com.intersystems</groupId>
-			<artifactId>intersystems-spark</artifactId>
-			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${iris.health.jars}/intersystems-spark-1.0.0.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>com.intersystems</groupId>
@@ -159,8 +150,16 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>5.4.17.Final</version>
+			<version>5.4.12.Final</version>
 		</dependency>
+
+		<!-- Testing -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.4.2</version>
+		</dependency>
+
 
 	</dependencies>
 
