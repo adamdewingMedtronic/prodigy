@@ -122,7 +122,7 @@
 				"use": "work"
 			}],
 			"gender": "male",
-			"birthDate": "1990-02-21",
+			"birthDate": "1960-02-21",
 			"deceasedBoolean": false,
 			"address": [{
 				"use": "home",
@@ -1992,7 +1992,7 @@
 						},
 						{
 							"system": "urn:oid:2.16.840.1.113883.6.96",
-							"code": "I09.81"
+							"code": "59621000"
 						}],
 						"text": "Essential hypertension"
 					},

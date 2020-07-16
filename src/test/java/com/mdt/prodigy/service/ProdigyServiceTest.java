@@ -7,10 +7,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mdt.prodigy.dto.card.Card;
 import com.mdt.prodigy.dto.card.Cards;
 import com.mdt.prodigy.dto.request.CDSServiceRequest;
-import com.mdt.prodigy.util.LoadFile;
+import com.mdt.prodigy.util.FileUtil;
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,7 @@ class ProdigyServiceTest {
 
     @Test
     void getORIDCards(){
-        String input = LoadFile.load("sample_input.json");
+        String input = FileUtil.load("sample_input.json");
         System.out.println(input);
         CDSServiceRequest request = null;
         try{
@@ -46,9 +45,10 @@ class ProdigyServiceTest {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        Cards cards = prodigyService.getORIDCards(request);
+        Cards cards = prodigyService.getOIRDCards(request);
 
         for(Card card: cards.getCards()){
+            FileUtil.save("c:/Temp/test.html", card.getDetail());
             try {
                 System.out.println(objectMapper.writeValueAsString(card));
             } catch (JsonProcessingException e) {

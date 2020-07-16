@@ -1992,9 +1992,9 @@
 						},
 						{
 							"system": "urn:oid:2.16.840.1.113883.6.96",
-							"code": "I09.81"
+							"code": "E66.2"
 						}],
-						"text": "Essential hypertension"
+						"text": "sleep disorder"
 					},
 					"subject": {
 						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",

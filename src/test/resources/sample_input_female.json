@@ -121,7 +121,7 @@
 				"value": "608-272-5000",
 				"use": "work"
 			}],
-			"gender": "male",
+			"gender": "female",
 			"birthDate": "1990-02-21",
 			"deceasedBoolean": false,
 			"address": [{
@@ -1992,7 +1992,7 @@
 						},
 						{
 							"system": "urn:oid:2.16.840.1.113883.6.96",
-							"code": "I09.81"
+							"code": "59621000"
 						}],
 						"text": "Essential hypertension"
 					},

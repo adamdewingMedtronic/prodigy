@@ -166,7 +166,7 @@
 							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
 							"value": "857970"
 						},
-						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+						"display": " (SYNTHROID) 100 MCG PO TABS"
 					}],
 					"status": "stopped",
 					"category": {
@@ -179,7 +179,7 @@
 					},
 					"medicationReference": {
 						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eA9IZM.lvQVOXTDPYrt97mnNuk1UqUxlbxPrfC.Uo7j7uV0N8eLfQfsml5DAGZxmD3",
-						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+						"display": " (SYNTHROID) 100 MCG PO TABS"
 					},
 					"effectivePeriod": {
 						"start": "2009-03-10",
@@ -275,7 +275,7 @@
 							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
 							"value": "857973"
 						},
-						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+						"display": " (SYNTHROID) 100 MCG PO TABS"
 					}],
 					"status": "stopped",
 					"category": {
@@ -288,7 +288,7 @@
 					},
 					"medicationReference": {
 						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eA9IZM.lvQVOXTDPYrt97ms7kbloqkHUGUGl53aHm9.PJ4zAlmHiQP6ofOLgsXneh3",
-						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+						"display": " (SYNTHROID) 100 MCG PO TABS"
 					},
 					"effectivePeriod": {
 						"start": "2008-09-16",
@@ -815,7 +815,7 @@
 							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
 							"value": "852671"
 						},
-						"display": "oxycodone-acetaminophen (PERCOCET) 10-325 MG per tablet 1 Tab"
+						"display": "-acetaminophen (PERCOCET) 10-325 MG per tablet 1 Tab"
 					}],
 					"status": "stopped",
 					"category": {
@@ -828,7 +828,7 @@
 					},
 					"medicationReference": {
 						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eKRcRoWTOQMN3JJ-JRKRMe-aYT2wYXB2P6sO5w3y06UUm6Di.fg3vyMl1anz-jI1b3",
-						"display": "oxycodone-acetaminophen (PERCOCET) 10-325 MG per tablet 1 Tab"
+						"display": "-acetaminophen (PERCOCET) 10-325 MG per tablet 1 Tab"
 					},
 					"effectivePeriod": {
 						"start": "2010-11-29T17:02:03Z",
@@ -1552,7 +1552,7 @@
 					},
 					"medicationReference": {
 						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eA9IZM.lvQVOXTDPYrt97mu5tZJMJCzk-nlu2Y1rlrBOCDAziwjBta3vfV7INYGH23",
-						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+						"display": " (SYNTHROID) 100 MCG PO TABS"
 					},
 					"effectivePeriod": {
 						"start": "2008-06-09",
@@ -1992,7 +1992,7 @@
 						},
 						{
 							"system": "urn:oid:2.16.840.1.113883.6.96",
-							"code": "I09.81"
+							"code": "59621000"
 						}],
 						"text": "Essential hypertension"
 					},

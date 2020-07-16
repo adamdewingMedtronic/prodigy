@@ -2,6 +2,7 @@ package com.mdt.prodigy.service;
 
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.parser.IParser;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mdt.fhir.resource.PatientHelper;
@@ -22,100 +23,16 @@ import java.util.List;
 
 public class ProdigyService implements IProdigyService {
 
+    FhirContext ctx = null;
+    IParser parser = null;
 
-    @Override
-    public List<Risk> calculateOIRDRisk(Patient patient, Bundle medications, Bundle conditions, Bundle conditionsEnc) {
-        List<Risk> risks = new ArrayList<>();
-        risks.add(new Risk(ageRiskScore(patient), RiskType.AGE));
-        risks.add(new Risk(sexRisk(patient), RiskType.SEX));
-        risks.add(new Risk(chronicHeartFailureRisk(conditions), RiskType.CHRONIC_HEART_FAILURE));
-        risks.add(new Risk(opiodNaiveRisk(medications), RiskType.OPIOD_NAIVE));
-        risks.add(new Risk(chronicHeartFailureRisk(conditions), RiskType.SLEEP_DISORDER));
-        return risks;
-    }
-
-    private int ageRiskScore(Patient patient) {
-        int category = ageRiskCategory(patient);
-        if (category == 4) {
-            return 16;
-        } else if (category == 3) {
-            return 12;
-        } else if (category == 2) {
-            return 8;
-        } else {
-            return 0;
-        }
-    }
-
-    private int sexRisk(Patient patient) {
-        return "male".equalsIgnoreCase(getSex(patient)) ? 8 : 0;
-    }
-
-    private int chronicHeartFailureRisk(Bundle bundle) {
-        return isChronicHeartFailure(bundle) ? 7 : 0;
-    }
-
-    private int opiodNaiveRisk(Bundle bundle) {
-        return isOpiodNaive(bundle) ? 3 : 0;
-    }
-
-    private int ageRiskCategory(Patient patient) {
-        int age = getAge(patient);
-        if (age >= 80) {
-            return 4;
-        } else if (age >= 70) {
-            return 3;
-        } else if (age >= 60) {
-            return 2;
-        } else {
-            return 1;
-        }
-    }
-
-    private String getSex(Patient patient) {
-        PatientHelper patientHelper = new PatientHelper(patient);
-        return patientHelper.getGender();
-    }
-
-    private boolean isChronicHeartFailure(Bundle bundle) {
-        if (bundle == null) {
-            return false;
-        }
-        String data = bundle.toString();
-        for (String value : HeartFailureCodes.values) {
-            if (data.contains(value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * Determines if the bundle contains MedicationStatements that contain opiods.
-     *
-     * @param bundle
-     * @return True if the bundle does not contain any MedicationStatements that are opiods.
-     */
-    private boolean isOpiodNaive(Bundle bundle) {
-        if (bundle == null) {
-            return true;
-        }
-        String data = bundle.toString();
-        for (String value : OpiodCodes.values) {
-            if (data.contains(value)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private int getAge(Patient patient) {
-        PatientHelper patientHelper = new PatientHelper(patient);
-        return patientHelper.getAge();
+    public ProdigyService(){
+        ctx = FhirContext.forDstu3();
+        parser = ctx.newJsonParser();
     }
 
     @Override
-    public Cards getORIDCards(CDSServiceRequest request) {
+    public Cards getOIRDCards(CDSServiceRequest request) {
         Patient patient = null;
         Bundle medications = null;
         Bundle conditions = null;
@@ -123,8 +40,7 @@ public class ProdigyService implements IProdigyService {
         Cards cards = new Cards();
         ProdigyResponseCard card = new ProdigyResponseCard();
         cards.getCards().add(card);
-        FhirContext ctx = FhirContext.forDstu3();
-        IParser parser = ctx.newJsonParser();
+
         try {
             ObjectMapper objectMapper = new ObjectMapper();
             System.out.println(request.getPrefetch().getPatient());
@@ -162,7 +78,7 @@ public class ProdigyService implements IProdigyService {
         risks.add(chronicHeartFailureRisk);
         opiodNaiveRisk = new Risk(opiodNaiveRisk(medications), RiskType.OPIOD_NAIVE);
         risks.add(opiodNaiveRisk);
-        sleepDisorderRisk = new Risk(sleepDisorderRisk(conditionsEnc), RiskType.SLEEP_DISORDER);
+        sleepDisorderRisk = new Risk(sleepDisorderRisk(conditions), RiskType.SLEEP_DISORDER);
         risks.add(sleepDisorderRisk);
 
         /***************************************
@@ -187,6 +103,33 @@ public class ProdigyService implements IProdigyService {
         return cards;
     }
 
+    private int ageRiskCategory(Patient patient) {
+        int age = getAge(patient);
+        System.out.println("Patient's age is:" + age);
+        if (age >= 80) {
+            return 4;
+        } else if (age >= 70) {
+            return 3;
+        } else if (age >= 60) {
+            return 2;
+        } else {
+            return 1;
+        }
+    }
+
+    private int ageRiskScore(Patient patient) {
+        int category = ageRiskCategory(patient);
+        if (category == 4) {
+            return 16;
+        } else if (category == 3) {
+            return 12;
+        } else if (category == 2) {
+            return 8;
+        } else {
+            return 0;
+        }
+    }
+
     private String buildHTML(List<Risk> risks, int riskScore, RiskText riskText, Patient patient) {
         String html = getBaseHtml();
         html = html.replaceAll("RISK_TEXT", riskText.getText());
@@ -199,6 +142,15 @@ public class ProdigyService implements IProdigyService {
         }
         html = setAgeRiskCss(patient, html);
         return html;
+    }
+
+    private int chronicHeartFailureRisk(Bundle bundle) {
+        return isChronicHeartFailure(bundle) ? 7 : 0;
+    }
+
+    private int getAge(Patient patient) {
+        PatientHelper patientHelper = new PatientHelper(patient);
+        return patientHelper.getAge();
     }
 
     private String getBaseHtml() {
@@ -225,7 +177,7 @@ public class ProdigyService implements IProdigyService {
                 "            <h4 style=\"color: black; font-weight: lighter;\">PRODIGY SCORE</h4>\n" +
                 "        </div>\n" +
                 "        <div style=\"height:240px; width: 55%; background: clear; float: left;\">\n" +
-                "            <p style=\"color: black; text-align: left;\">This patient is at RISK_TEXT for opioid-induced respiratory depression. CAPNOGRAPHY_MONITORING</p>\n" +
+                "            <p style=\"color: black; text-align: left;\">This patient is at <b>RISK_TEXT</b> for opioid-induced respiratory depression. CAPNOGRAPHY_MONITORING</p>\n" +
                 "            <p style=\"color: #308DCD; text-align: left;\">Capnography Monitoring Policy</p>\n" +
                 "            <p style=\"text-align: left;\">\n" +
                 "                <a style=\"color: #308DCD;\" href=\"https://www.medtronic.com/content/dam/covidien/library/us/en/product/capnography-monitoring/microstream-capnography-breath-monitoring-matters-info-sheet.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">About Capnography</a>\n" +
@@ -322,6 +274,12 @@ public class ProdigyService implements IProdigyService {
                 "</div>";
     }
 
+    private String getSex(Patient patient) {
+        PatientHelper patientHelper = new PatientHelper(patient);
+        System.out.println("Patient's gender is: " + patientHelper.getGender());
+        return patientHelper.getGender();
+    }
+
     private RiskText getSummary(int risk) {
         RiskText riskText = null;
         if (risk >= 15) {
@@ -332,6 +290,59 @@ public class ProdigyService implements IProdigyService {
             riskText = RiskText.LOW;
         }
         return riskText;
+    }
+
+    private boolean isChronicHeartFailure(Bundle bundle) {
+        if (bundle == null) {
+            return false;
+        }
+        String data = parser.encodeResourceToString(bundle);
+        for (String value : HeartFailureCodes.values) {
+            if (data.contains(value)) {
+                System.out.println("Found chronic heart failure code: " + value);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Determines if the bundle contains MedicationStatements that contain opiods.
+     *
+     * @param bundle
+     * @return True if the bundle does not contain any MedicationStatements that are opiods.
+     */
+    private boolean isOpiodNaive(Bundle bundle) {
+        if (bundle == null) {
+            return true;
+        }
+        String data = null;
+        data = parser.encodeResourceToString(bundle);
+        for (String value : OpiodCodes.values) {
+            if (data.contains(value)) {
+                System.out.println("Found opiod code: " + value);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean isSleepDisorder(Bundle bundle) {
+        if (bundle == null) {
+            return false;
+        }
+        String data = parser.encodeResourceToString(bundle);
+        for (String value : SleepDisorderCodes.values) {
+            if (data.contains(value)) {
+                System.out.println("Found sleep disorder code: " + value);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private int opiodNaiveRisk(Bundle bundle) {
+        return isOpiodNaive(bundle) ? 3 : 0;
     }
 
     private String setAgeRiskCss(Patient patient, String html) {
@@ -394,20 +405,11 @@ public class ProdigyService implements IProdigyService {
         return html;
     }
 
-    private int sleepDisorderRisk(Bundle bundle) {
-        return isSleepDisorder(bundle) ? 5 : 0;
+    private int sexRisk(Patient patient) {
+        return "male".equalsIgnoreCase(getSex(patient)) ? 8 : 0;
     }
 
-    private boolean isSleepDisorder(Bundle bundle) {
-        if (bundle == null) {
-            return false;
-        }
-        String data = bundle.toString();
-        for (String value : SleepDisorderCodes.values) {
-            if (data.contains(value)) {
-                return true;
-            }
-        }
-        return false;
+    private int sleepDisorderRisk(Bundle bundle) {
+        return isSleepDisorder(bundle) ? 5 : 0;
     }
 }
