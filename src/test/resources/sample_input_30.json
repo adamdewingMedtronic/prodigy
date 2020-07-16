@@ -1,0 +1,2413 @@
+{
+	"hookInstance": "8ed134d6-5265-11ea-a4d2-0050568b7be6",
+	"fhirServer": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3",
+	"hook": "patient-view",
+	"fhirAuthorization": {
+		"access_token": "MUpKSL4cSYneX3ynsJ0UPAOipWTppjHtUkJOPgjwecubuRq1Bf-kiaCeq1NuxZw-bOy8F9vek-AaGVnHmPQbVmD0YY3ahLkuTk7jf8-Mqk6qNScnH21dXxejs7MXrmVY",
+		"token_type": "Bearer",
+		"expires_in": 3600,
+		"scope": "Condition.Read (STU3) Condition.Search (STU3) MedicationStatement.Read (STU3) MedicationStatement.Search (STU3) Patient.Read (STU3)",
+		"subject": "08b72981-540a-4082-8e7d-0da70c009f5d"
+	},
+	"context": {
+		"patientId": "eeR.6U3L89G5HUPy5ijb7YQ3",
+		"encounterId": "ePbIBGicRZQDxzFPlYRzAyA3",
+		"userId": "Practitioner/exfo6E4EXjWsnhA1OGVElgw3"
+	},
+	"prefetch": {
+		"patient": {
+			"resourceType": "Patient",
+			"id": "eeR.6U3L89G5HUPy5ijb7YQ3",
+			"extension": [{
+				"valueCode": "M",
+				"url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex"
+			},
+			{
+				"extension": [{
+					"valueCoding": {
+						"system": "http://hl7.org/fhir/us/core/ValueSet/omb-race-category",
+						"code": "UNK",
+						"display": "Unknown"
+					},
+					"url": "ombCategory"
+				},
+				{
+					"valueString": "Unknown",
+					"url": "text"
+				}],
+				"url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-race"
+			},
+			{
+				"extension": [{
+					"valueCoding": {
+						"system": "http://hl7.org/fhir/us/core/ValueSet/omb-ethnicity-category",
+						"code": "UNK",
+						"display": "Unknown"
+					},
+					"url": "ombCategory"
+				},
+				{
+					"valueString": "Unknown",
+					"url": "text"
+				}],
+				"url": "http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity"
+			}],
+			"identifier": [{
+				"use": "usual",
+				"type": {
+					"text": "EPIC"
+				},
+				"system": "urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.0",
+				"value": "E1697"
+			},
+			{
+				"use": "usual",
+				"type": {
+					"text": "EXTERNAL"
+				},
+				"value": "Z4958"
+			},
+			{
+				"use": "usual",
+				"type": {
+					"text": "FHIR"
+				},
+				"value": "TYm-Dz5mg5SJF8XqoxuFRqYzFuOOCEMvm8djkNmPq4cAB"
+			},
+			{
+				"use": "usual",
+				"type": {
+					"text": "FHIR STU3"
+				},
+				"value": "eeR.6U3L89G5HUPy5ijb7YQ3"
+			},
+			{
+				"use": "usual",
+				"type": {
+					"text": "INTERNAL"
+				},
+				"value": "     Z4958"
+			},
+			{
+				"use": "usual",
+				"type": {
+					"text": "MRN"
+				},
+				"system": "urn:oid:1.2.840.114350.1.13.0.1.7.5.737384.14",
+				"value": "201487"
+			},
+			{
+				"extension": [{
+					"valueString": "xxx-xx-4383",
+					"url": "http://hl7.org/fhir/StructureDefinition/rendered-value"
+				}],
+				"use": "usual",
+				"system": "urn:oid:2.16.840.1.113883.4.1"
+			}],
+			"active": true,
+			"name": [{
+				"use": "usual",
+				"text": "Phil Integration",
+				"family": "Integration",
+				"given": ["Phil"]
+			}],
+			"telecom": [{
+				"system": "phone",
+				"value": "608-213-5806",
+				"use": "home"
+			},
+			{
+				"system": "phone",
+				"value": "608-272-5000",
+				"use": "work"
+			}],
+			"gender": "male",
+			"birthDate": "1990-02-21",
+			"deceasedBoolean": false,
+			"address": [{
+				"use": "home",
+				"line": ["134 Elm Street"],
+				"city": "Madison",
+				"state": "WI",
+				"postalCode": "53706",
+				"country": "US"
+			}],
+			"managingOrganization": {
+				"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Organization/enRyWnSP963FYDpoks4NHOA3",
+				"display": "Epic Hospital System"
+			}
+		},
+		"medications": {
+			"resourceType": "Bundle",
+			"type": "searchset",
+			"total": 18,
+			"link": [{
+				"relation": "self",
+				"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement?patient=eeR.6U3L89G5HUPy5ijb7YQ3&status=active,stopped"
+			}],
+			"entry": [{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/e7D0c0wQdddRuK16FTD5ctw3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/e7D0c0wQdddRuK16FTD5ctw3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "e7D0c0wQdddRuK16FTD5ctw3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857970"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/ezwXvX7rSBW76EPqCG-HL5A3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857970"
+						},
+						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eA9IZM.lvQVOXTDPYrt97mnNuk1UqUxlbxPrfC.Uo7j7uV0N8eLfQfsml5DAGZxmD3",
+						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+					},
+					"effectivePeriod": {
+						"start": "2009-03-10",
+						"end": "2009-06-07"
+					},
+					"dateAsserted": "2009-03-10T15:40:18Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 100,
+								"unit": "mcg",
+								"system": "http://unitsofmeasure.org",
+								"code": "ug"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2009-03-10",
+									"end": "2009-06-07"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 100,
+							"unit": "mcg",
+							"system": "http://unitsofmeasure.org",
+							"code": "ug"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/e8Igd9mXA.M4ve-.whdmA-g3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/e8Igd9mXA.M4ve-.whdmA-g3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "e8Igd9mXA.M4ve-.whdmA-g3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857973"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/e2MuGsIkahgBlHQ2jt-hUyA3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857973"
+						},
+						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eA9IZM.lvQVOXTDPYrt97ms7kbloqkHUGUGl53aHm9.PJ4zAlmHiQP6ofOLgsXneh3",
+						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+					},
+					"effectivePeriod": {
+						"start": "2008-09-16",
+						"end": "2009-03-10"
+					},
+					"dateAsserted": "2008-09-16T15:26:04Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 100,
+								"unit": "mcg",
+								"system": "http://unitsofmeasure.org",
+								"code": "ug"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-09-16",
+									"end": "2009-03-10"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 100,
+							"unit": "mcg",
+							"system": "http://unitsofmeasure.org",
+							"code": "ug"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eBvCCmgZrBGCsrvZ8INrJ.g3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eBvCCmgZrBGCsrvZ8INrJ.g3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eBvCCmgZrBGCsrvZ8INrJ.g3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857989"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "patientspecified",
+							"display": "Patient Specified"
+						}],
+						"text": "Patient Specified"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/elDU0FxAVaBfoGItoj3nk0eSibyzjK0ngrqgSRUgrty5h8Pt64uimIZ0r3ijtqIVI3",
+						"display": "TRIAMTERENE-HCTZ (DYAZIDE) 37.5-25 MG PO CAPS"
+					},
+					"effectivePeriod": {
+						"start": "2008-02-22",
+						"end": "2008-06-07"
+					},
+					"dateAsserted": "2008-06-07T22:32:49Z",
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-02-22",
+									"end": "2008-06-07"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eE67RvzB7payk7JW57ob8cw3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eE67RvzB7payk7JW57ob8cw3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eE67RvzB7payk7JW57ob8cw3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857990"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "patientspecified",
+							"display": "Patient Specified"
+						}],
+						"text": "Patient Specified"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/e4a358bdlVtjl8Jqsf3-8u6llTehthYS1FtLhMjn4dKEYAdyRXHNmikIKgSiZizuR3",
+						"display": "famotidine (PEPCID) 20 MG PO TABS"
+					},
+					"dateAsserted": "2008-06-07T22:32:50Z",
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 20,
+								"unit": "mg",
+								"system": "http://unitsofmeasure.org",
+								"code": "mg"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth 2 times daily. ",
+						"patientInstruction": "take 1 Tab by mouth 2 times daily. ",
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 20,
+							"unit": "mg",
+							"system": "http://unitsofmeasure.org",
+							"code": "mg"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eEOuPx6flna7eG39OSrtNWA3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eEOuPx6flna7eG39OSrtNWA3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eEOuPx6flna7eG39OSrtNWA3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857995"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eawlShDeBZ.VNKQ7RDYvQVw3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857995"
+						},
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 180 MG PO CP24"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/e.LXHYUhKafD4VXBvv9kq-3exRQHDBeb8nN-R7W30aNV7z7RLDfb7-OGVC6HaqRlo3",
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 180 MG PO CP24"
+					},
+					"effectivePeriod": {
+						"start": "2008-02-26",
+						"end": "2008-04-03"
+					},
+					"dateAsserted": "2008-02-26T22:20:57Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-02-26",
+									"end": "2008-04-03"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eFKdTQgjmYLAI5JVcOVSUQA3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eFKdTQgjmYLAI5JVcOVSUQA3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eFKdTQgjmYLAI5JVcOVSUQA3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "852675"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/e7OeHY9ZfPnxs2c11Mc0GNA3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "852675"
+						},
+						"display": "dextrose 5 % and 0.45% NaCl 1,000 mL"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "inpatient",
+							"display": "Inpatient"
+						}],
+						"text": "Inpatient"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eXwh-hsiBb1tCb9L3oraIx0B3qV5YhXKv5n2K-Yv78ZZ15F8yL9dKXFGFiBq7waZI3",
+						"display": "dextrose 5 % and 0.45% NaCl 1,000 mL"
+					},
+					"effectivePeriod": {
+						"start": "2010-11-29T17:13:44Z",
+						"end": "2012-02-07T17:15:23Z"
+					},
+					"dateAsserted": "2010-11-29T17:15:23Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e9s-IdXQOUVywHOVoisd6xQ3",
+						"display": "Attending Physician Inpatient, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2010-11-29T17:13:44Z",
+									"end": "2012-02-07T17:15:23Z"
+								}
+							},
+							"code": {
+								"text": "Continuous"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "11",
+								"display": "Intravenous"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "418114005",
+								"display": "Intravenous Central Route"
+							}],
+							"text": "Intravenous"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eGez4n7HAKsxb3zkVIo1Rhw3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eGez4n7HAKsxb3zkVIo1Rhw3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eGez4n7HAKsxb3zkVIo1Rhw3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857971"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eNKck9vdKNTdk-qtK0Z14AA3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857971"
+						},
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 240 MG PO CP24"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eAMyTcggmIulnQ2tTBjDzePQTdQ1zlUSVpW77tp4dHMJ5KzhBQviJLo5nBsPnGkXV3",
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 240 MG PO CP24"
+					},
+					"effectivePeriod": {
+						"start": "2009-03-10",
+						"end": "2009-06-07"
+					},
+					"dateAsserted": "2009-03-10T15:40:18Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2009-03-10",
+									"end": "2009-06-07"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eJOF5xR-cnS1YpihF.p36HQ3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eJOF5xR-cnS1YpihF.p36HQ3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eJOF5xR-cnS1YpihF.p36HQ3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "852671"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/esSmm292rvWcmMzNprsWtXQ3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "852671"
+						},
+						"display": "oxycodone-acetaminophen (PERCOCET) 10-325 MG per tablet 1 Tab"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "inpatient",
+							"display": "Inpatient"
+						}],
+						"text": "Inpatient"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eKRcRoWTOQMN3JJ-JRKRMe-aYT2wYXB2P6sO5w3y06UUm6Di.fg3vyMl1anz-jI1b3",
+						"display": "oxycodone-acetaminophen (PERCOCET) 10-325 MG per tablet 1 Tab"
+					},
+					"effectivePeriod": {
+						"start": "2010-11-29T17:02:03Z",
+						"end": "2012-02-07T17:15:18Z"
+					},
+					"dateAsserted": "2010-11-29T17:05:39Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e9s-IdXQOUVywHOVoisd6xQ3",
+						"display": "Attending Physician Inpatient, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "Take 1 Tab by mouth every 4 hours as needed.",
+						"patientInstruction": "Take 1 Tab by mouth every 4 hours as needed.",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2010-11-29T17:02:03Z",
+									"end": "2012-02-07T17:15:18Z"
+								},
+								"frequency": 1,
+								"period": 4,
+								"periodUnit": "h"
+							},
+							"code": {
+								"text": "Every 4 (four) hours as needed"
+							}
+						},
+						"asNeededBoolean": true,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 1,
+							"unit": "tablet",
+							"system": "http://unitsofmeasure.org",
+							"code": "{tbl}"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eObwBYIb-w.Oec.uOAmWd8Q3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eObwBYIb-w.Oec.uOAmWd8Q3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eObwBYIb-w.Oec.uOAmWd8Q3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857974"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/ecu347XUtw8ytft5vC6ueBQ3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857974"
+						},
+						"display": "famotidine (PEPCID) 20 MG PO TABS"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/e4a358bdlVtjl8Jqsf3-8uxr2ucFKAXZZxam4E7Ypn3cUzK8QcXVPVKfL9MKaWhEN3",
+						"display": "famotidine (PEPCID) 20 MG PO TABS"
+					},
+					"effectivePeriod": {
+						"start": "2008-06-07",
+						"end": "2009-03-10"
+					},
+					"dateAsserted": "2008-06-07T22:37:53Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 20,
+								"unit": "mg",
+								"system": "http://unitsofmeasure.org",
+								"code": "mg"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth 2 times daily. ",
+						"patientInstruction": "take 1 Tab by mouth 2 times daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-06-07",
+									"end": "2009-03-10"
+								},
+								"timeOfDay": ["09:00:00",
+								"18:00:00"]
+							},
+							"code": {
+								"text": "0900, 1800"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 20,
+							"unit": "mg",
+							"system": "http://unitsofmeasure.org",
+							"code": "mg"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eSlIyzuSJkJNbJBZAxXYdRA3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eSlIyzuSJkJNbJBZAxXYdRA3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eSlIyzuSJkJNbJBZAxXYdRA3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857988"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eKR-nZeBKg..v3dyZ15Dxcw3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857988"
+						},
+						"display": "DILTIAZEM HCL (CARDIZEM) 120 MG PO TABS"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/egt-gAMoTQGY0LWJ8P2qncxximHJa0lpBW6Ww5pzPOYlU5p2.ptUDeiHLYrCVM0UA3",
+						"display": "DILTIAZEM HCL (CARDIZEM) 120 MG PO TABS"
+					},
+					"effectivePeriod": {
+						"start": "2008-04-03",
+						"end": "2008-06-07"
+					},
+					"dateAsserted": "2008-04-03T21:59:51Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth 2 times daily. ",
+						"patientInstruction": "take 1 Tab by mouth 2 times daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-04-03",
+									"end": "2008-06-07"
+								},
+								"timeOfDay": ["09:00:00",
+								"18:00:00"]
+							},
+							"code": {
+								"text": "0900, 1800"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eXbjDwGl2mirhTV8oEzR8vA3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eXbjDwGl2mirhTV8oEzR8vA3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eXbjDwGl2mirhTV8oEzR8vA3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857983"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eEoieZblH.w3bRhb02sOYgg3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857983"
+						},
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 240 MG PO CP24"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eAMyTcggmIulnQ2tTBjDzeIGjEv6KjWFj6DapmzhzIiUD.Gr8ACMrvgxFFJBZQ..13",
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 240 MG PO CP24"
+					},
+					"effectivePeriod": {
+						"start": "2008-06-07",
+						"end": "2008-09-16"
+					},
+					"dateAsserted": "2008-06-07T22:37:53Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-06-07",
+									"end": "2008-09-16"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eYQxGuoTSrAIU6Bznq.zltA3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eYQxGuoTSrAIU6Bznq.zltA3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eYQxGuoTSrAIU6Bznq.zltA3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857972"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eXcwaYOuLuW2o6Ok.ONhMXw3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857972"
+						},
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 240 MG PO CP24"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eAMyTcggmIulnQ2tTBjDzeFlg9NZ5F.Yf.kCVQbNu2AAObpLNOwkH8TZ975kGD5Jp3",
+						"display": "DILTIAZEM HCL COATED BEADS (CARDIZEM CD) 240 MG PO CP24"
+					},
+					"effectivePeriod": {
+						"start": "2008-09-16",
+						"end": "2009-03-10"
+					},
+					"dateAsserted": "2008-09-16T15:26:04Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-09-16",
+									"end": "2009-03-10"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/ebfalInpdz2-z.5yuSDE3Zg3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/ebfalInpdz2-z.5yuSDE3Zg3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "ebfalInpdz2-z.5yuSDE3Zg3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857987"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/ezCsQWJWelrhAJSR4cAFrkg3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857987"
+						},
+						"display": " (SYNTHROID) 75 MCG PO TABS"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eM1UcjWxYEMYw1RZILYqOg-J2j1dWv46q-zzemIx1Y9T7xTCIVlSD8QSUM3ysZgxF3",
+						"display": " (SYNTHROID) 75 MCG PO TABS"
+					},
+					"effectivePeriod": {
+						"start": "2008-02-26",
+						"end": "2008-06-09"
+					},
+					"dateAsserted": "2008-02-26T22:20:57Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 75,
+								"unit": "mcg",
+								"system": "http://unitsofmeasure.org",
+								"code": "ug"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-02-26",
+									"end": "2008-06-09"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 75,
+							"unit": "mcg",
+							"system": "http://unitsofmeasure.org",
+							"code": "ug"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eh8LJWfqzE4nmgvqIOCh0RQ3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eh8LJWfqzE4nmgvqIOCh0RQ3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eh8LJWfqzE4nmgvqIOCh0RQ3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "852670"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eC-ilAJcMNBfA0zaWkfzGvg3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "852670"
+						},
+						"display": "acetaminophen (TYLENOL) tablet 650 mg"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "inpatient",
+							"display": "Inpatient"
+						}],
+						"text": "Inpatient"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eWsLe1Oy1sGigN-S13IvXNqFYoN0HFm0HAgKuFfAlF96sEhgZVOkrM9N6XiBFaHLl3",
+						"display": "acetaminophen (TYLENOL) tablet 650 mg"
+					},
+					"effectivePeriod": {
+						"start": "2010-11-29T17:01:56Z",
+						"end": "2012-02-07T17:15:15Z"
+					},
+					"dateAsserted": "2010-11-29T17:05:39Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e9s-IdXQOUVywHOVoisd6xQ3",
+						"display": "Attending Physician Inpatient, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 2,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 650,
+								"unit": "mg",
+								"system": "http://unitsofmeasure.org",
+								"code": "mg"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "Take 650 mg by mouth every 4 hours as needed.",
+						"patientInstruction": "Take 650 mg by mouth every 4 hours as needed.",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2010-11-29T17:01:56Z",
+									"end": "2012-02-07T17:15:15Z"
+								},
+								"frequency": 1,
+								"period": 4,
+								"periodUnit": "h"
+							},
+							"code": {
+								"text": "Every 4 (four) hours as needed"
+							}
+						},
+						"asNeededBoolean": true,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 650,
+							"unit": "mg",
+							"system": "http://unitsofmeasure.org",
+							"code": "mg"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eizeD4KXXqzd9G21di-9yHg3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eizeD4KXXqzd9G21di-9yHg3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eizeD4KXXqzd9G21di-9yHg3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857982"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/e0cXMprwuw89Gl5Oez.RN8g3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857982"
+						},
+						"display": " (SYNTHROID) 100 MCG PO TABS"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eA9IZM.lvQVOXTDPYrt97mu5tZJMJCzk-nlu2Y1rlrBOCDAziwjBta3vfV7INYGH23",
+						"display": "levothyroxine (SYNTHROID) 100 MCG PO TABS"
+					},
+					"effectivePeriod": {
+						"start": "2008-06-09",
+						"end": "2008-09-16"
+					},
+					"dateAsserted": "2008-06-09T22:57:44Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 100,
+								"unit": "mcg",
+								"system": "http://unitsofmeasure.org",
+								"code": "ug"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth Daily. ",
+						"patientInstruction": "take 1 Tab by mouth Daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2008-06-09",
+									"end": "2008-09-16"
+								},
+								"timeOfDay": ["09:00:00"]
+							},
+							"code": {
+								"text": "0900"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 100,
+							"unit": "mcg",
+							"system": "http://unitsofmeasure.org",
+							"code": "ug"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eommgCjYYDSwobNk4xTtL-g3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/eommgCjYYDSwobNk4xTtL-g3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "eommgCjYYDSwobNk4xTtL-g3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "852676"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/e8N-mGeqabosEwRF45FQvPg3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "852676"
+						},
+						"display": "ceFAZolin (ANCEF) 1 g in dextrose 5 % 100 mL IVPB"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "inpatient",
+							"display": "Inpatient"
+						}],
+						"text": "Inpatient"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eMA0ql4pfIqQ4Z-2ScLL79QU-evhNqcMKiXSHBa6KhqdAlkcWI5V9nsChe0n0XJZA3",
+						"display": "ceFAZolin (ANCEF) 1 g in dextrose 5 % 100 mL IVPB"
+					},
+					"effectivePeriod": {
+						"start": "2010-11-29T17:15:00Z",
+						"end": "2012-02-07T17:15:26Z"
+					},
+					"dateAsserted": "2010-11-29T17:15:24Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e9s-IdXQOUVywHOVoisd6xQ3",
+						"display": "Attending Physician Inpatient, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "g",
+								"system": "http://unitsofmeasure.org",
+								"code": "g"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "g",
+								"system": "http://unitsofmeasure.org",
+								"code": "g"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2010-11-29T17:15:00Z",
+									"end": "2012-02-07T17:15:26Z"
+								},
+								"duration": 30,
+								"durationUnit": "min",
+								"frequency": 1,
+								"period": 8,
+								"periodUnit": "h"
+							},
+							"code": {
+								"text": "Every 8 hours"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "11",
+								"display": "Intravenous"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "418114005",
+								"display": "Intravenous Central Route"
+							}],
+							"text": "Intravenous"
+						},
+						"doseQuantity": {
+							"value": 1,
+							"unit": "g",
+							"system": "http://unitsofmeasure.org",
+							"code": "g"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/evUNZl481mPR0KaEoFX81Cw3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/evUNZl481mPR0KaEoFX81Cw3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "evUNZl481mPR0KaEoFX81Cw3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "857969"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eLT7sN2oZCsWBaLtuKjvLdw3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "857969"
+						},
+						"display": "famotidine (PEPCID) 20 MG PO TABS"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "community",
+							"display": "Community"
+						}],
+						"text": "Community"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/e4a358bdlVtjl8Jqsf3-8u7qnNpV8TmY9pWxFV2E1c4H65GXE-b02oH.HPL0c-GO53",
+						"display": "famotidine (PEPCID) 20 MG PO TABS"
+					},
+					"effectivePeriod": {
+						"start": "2009-03-10",
+						"end": "2009-06-07"
+					},
+					"dateAsserted": "2009-03-10T15:40:16Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/eM5CWtq15N0WJeuCet5bJlQ3",
+						"display": "Physician Family Medicine, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 1,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 20,
+								"unit": "mg",
+								"system": "http://unitsofmeasure.org",
+								"code": "mg"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"text": "take 1 Tab by mouth 2 times daily. ",
+						"patientInstruction": "take 1 Tab by mouth 2 times daily. ",
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2009-03-10",
+									"end": "2009-06-07"
+								},
+								"timeOfDay": ["09:00:00",
+								"18:00:00"]
+							},
+							"code": {
+								"text": "0900, 1800"
+							}
+						},
+						"asNeededBoolean": false,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 20,
+							"unit": "mg",
+							"system": "http://unitsofmeasure.org",
+							"code": "mg"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/evn8iN0f7GXWRtYA0ynlU8A3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationStatement/evn8iN0f7GXWRtYA0ynlU8A3",
+				"resource": {
+					"resourceType": "MedicationStatement",
+					"id": "evn8iN0f7GXWRtYA0ynlU8A3",
+					"identifier": [{
+						"use": "usual",
+						"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+						"value": "850613"
+					}],
+					"basedOn": [{
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/MedicationRequest/eo5z2QHgawS.xz31HIjA39g3",
+						"identifier": {
+							"use": "usual",
+							"system": "urn:oid:1.2.840.114350.1.13.0.1.7.2.798268",
+							"value": "850613"
+						},
+						"display": "acetaminophen (TYLENOL) tablet 650 mg"
+					}],
+					"status": "stopped",
+					"category": {
+						"coding": [{
+							"system": "http://hl7.org/fhir/medication-statement-category",
+							"code": "inpatient",
+							"display": "Inpatient"
+						}],
+						"text": "Inpatient"
+					},
+					"medicationReference": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Medication/eWsLe1Oy1sGigN-S13IvXNiKIJRzZ0rCpOURGnQ1sepzl3nLE2imHwkN0x2Ui49xo3",
+						"display": "acetaminophen (TYLENOL) tablet 650 mg"
+					},
+					"effectivePeriod": {
+						"start": "2010-10-27T13:03:43Z",
+						"end": "2010-11-29T17:05:34Z"
+					},
+					"dateAsserted": "2010-10-27T13:03:48Z",
+					"informationSource": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Practitioner/e9s-IdXQOUVywHOVoisd6xQ3",
+						"display": "Attending Physician Inpatient, MD"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"taken": "unk",
+					"dosage": [{
+						"extension": [{
+							"valueQuantity": {
+								"value": 2,
+								"unit": "tablet",
+								"system": "http://unitsofmeasure.org",
+								"code": "{tbl}"
+							},
+							"url": "https://open.epic.com/fhir/extensions/admin-amount"
+						},
+						{
+							"valueQuantity": {
+								"value": 650,
+								"unit": "mg",
+								"system": "http://unitsofmeasure.org",
+								"code": "mg"
+							},
+							"url": "https://open.epic.com/fhir/extensions/ordered-dose"
+						}],
+						"timing": {
+							"repeat": {
+								"boundsPeriod": {
+									"start": "2010-10-27T13:03:43Z",
+									"end": "2010-11-29T17:05:34Z"
+								},
+								"frequency": 1,
+								"period": 4,
+								"periodUnit": "h"
+							},
+							"code": {
+								"text": "Every 4 (four) hours as needed"
+							}
+						},
+						"asNeededBoolean": true,
+						"route": {
+							"coding": [{
+								"system": "urn:oid:1.2.840.114350.1.13.0.1.7.4.798268.7025",
+								"code": "15",
+								"display": "Oral"
+							},
+							{
+								"system": "http://snomed.info/sct",
+								"code": "260548002",
+								"display": "Oral"
+							}],
+							"text": "Oral"
+						},
+						"doseQuantity": {
+							"value": 650,
+							"unit": "mg",
+							"system": "http://unitsofmeasure.org",
+							"code": "mg"
+						}
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			}]
+		},
+		"conditions": {
+			"resourceType": "Bundle",
+			"type": "searchset",
+			"total": 6,
+			"link": [{
+				"relation": "self",
+				"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition?patient=eeR.6U3L89G5HUPy5ijb7YQ3&clinical-status=active,resolved,inactive"
+			}],
+			"entry": [{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eY4qaJAIO2oT29n7i.XAFQg3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eY4qaJAIO2oT29n7i.XAFQg3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "eY4qaJAIO2oT29n7i.XAFQg3",
+					"clinicalStatus": "active",
+					"verificationStatus": "confirmed",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "problem-list-item",
+							"display": "Problem List Item"
+						}],
+						"text": "Problem List Item"
+					}],
+					"code": {
+						"coding": [{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "I10"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.96",
+							"code": "59621000"
+						}],
+						"text": "Essential hypertension"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"assertedDate": "2008-02-21",
+					"note": [{
+						"text": "Diagnosed age 54. Initially treated with sodium restriction, diet, exercise. Diuretics started ~1988, taken sporadically since that time. Patient admits to poor compliance with med regimen. No history to suggest end organ damage or coronary artery disease. Cardiovascular risk factors include 20 pk yr hx of smoking and hypercholesterolemia.\r\n"
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eUjEVJU0ZTWpVot4TDsIYAA3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eUjEVJU0ZTWpVot4TDsIYAA3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "eUjEVJU0ZTWpVot4TDsIYAA3",
+					"clinicalStatus": "resolved",
+					"verificationStatus": "confirmed",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "problem-list-item",
+							"display": "Problem List Item"
+						}],
+						"text": "Problem List Item"
+					}],
+					"code": {
+						"coding": [{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "F17.200"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.96",
+							"code": "110483000"
+						}],
+						"text": "Tobacco use disorder"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"onsetPeriod": {
+						"end": "2008-06-07"
+					},
+					"abatementPeriod": {
+						"end": "2008-06-07"
+					},
+					"assertedDate": "2008-02-21",
+					"note": [{
+						"text": "Started smoking age 16, smoking 1-15 ppd. Has made several half-hearted attempts to quit but has never been successful for longer than a few days. Only smoker in the family\r\n"
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eoFx.v1ZoHV.BkgTaclb0aQ3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eoFx.v1ZoHV.BkgTaclb0aQ3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "eoFx.v1ZoHV.BkgTaclb0aQ3",
+					"clinicalStatus": "active",
+					"verificationStatus": "confirmed",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "problem-list-item",
+							"display": "Problem List Item"
+						}],
+						"text": "Problem List Item"
+					}],
+					"code": {
+						"coding": [{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "K21.9"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.96",
+							"code": "235595009"
+						}],
+						"text": "Gastroesophageal reflux disease"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"assertedDate": "2008-02-21",
+					"note": [{
+						"text": "GERD, diagnosed by EGD. Symptoms well controlled with intermittent use of H2 blockers\r\nIMO import replacer change\r\n"
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/e0.Pj75dCn-1UtN.Dc3S2SQ3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/e0.Pj75dCn-1UtN.Dc3S2SQ3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "e0.Pj75dCn-1UtN.Dc3S2SQ3",
+					"clinicalStatus": "active",
+					"verificationStatus": "confirmed",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "problem-list-item",
+							"display": "Problem List Item"
+						}],
+						"text": "Problem List Item"
+					}],
+					"code": {
+						"coding": [{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "E03.9"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.96",
+							"code": "40930008"
+						}],
+						"text": "Hypothyroidism"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"assertedDate": "2008-02-26",
+					"note": [{
+						"text": "IMO import replacer change\r\n"
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/ejIaBzuxkUGVI97STBmpyxQ3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/ejIaBzuxkUGVI97STBmpyxQ3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "ejIaBzuxkUGVI97STBmpyxQ3",
+					"clinicalStatus": "resolved",
+					"verificationStatus": "confirmed",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "problem-list-item",
+							"display": "Problem List Item"
+						}],
+						"text": "Problem List Item"
+					}],
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"onsetPeriod": {
+						"end": "2008-09-12"
+					},
+					"abatementPeriod": {
+						"end": "2008-09-12"
+					},
+					"assertedDate": "2008-09-08",
+					"note": [{
+						"text": "IMO import replacer change\r\n"
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/ee11xgiS4q70Ch0njQ3Y1aQ3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/ee11xgiS4q70Ch0njQ3Y1aQ3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "ee11xgiS4q70Ch0njQ3Y1aQ3",
+					"clinicalStatus": "resolved",
+					"verificationStatus": "confirmed",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "problem-list-item",
+							"display": "Problem List Item"
+						}],
+						"text": "Problem List Item"
+					}],
+					"code": {
+						"coding": [{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "J18.9"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.96",
+							"code": "312342009"
+						}],
+						"text": "Pneumonia, organism unspecified"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"onsetPeriod": {
+						"end": "2010-11-30"
+					},
+					"abatementPeriod": {
+						"end": "2010-11-30"
+					},
+					"assertedDate": "2010-10-27"
+				},
+				"search": {
+					"mode": "match"
+				}
+			}]
+		},
+		"conditionsEnc": {
+			"resourceType": "Bundle",
+			"type": "searchset",
+			"total": 3,
+			"link": [{
+				"relation": "self",
+				"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition?patient=eeR.6U3L89G5HUPy5ijb7YQ3&encounter=ePbIBGicRZQDxzFPlYRzAyA3&category=encounter-diagnosis"
+			}],
+			"entry": [{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eq4ox4rOqSHrjvL.cj4bhNuRwlB8TgJFfU7EihGuuc45psziXOVrAZfNMdSaD06VUKgryrt-NH8rKfbw5Rqug1w3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eq4ox4rOqSHrjvL.cj4bhNuRwlB8TgJFfU7EihGuuc45psziXOVrAZfNMdSaD06VUKgryrt-NH8rKfbw5Rqug1w3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "eq4ox4rOqSHrjvL.cj4bhNuRwlB8TgJFfU7EihGuuc45psziXOVrAZfNMdSaD06VUKgryrt-NH8rKfbw5Rqug1w3",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "encounter-diagnosis",
+							"display": "Encounter Diagnosis"
+						}],
+						"text": "Encounter Diagnosis"
+					},
+					{
+						"coding": [{
+							"system": "http://open.epic.com/FHIR/STU3/StructureDefinition/condition-category",
+							"code": "visit-diagnosis",
+							"display": "Visit Diagnosis"
+						}],
+						"text": "Visit Diagnosis"
+					}],
+					"code": {
+						"coding": [{
+							"system": "http://snomed.info/sct",
+							"code": "312342009",
+							"display": "Infective pneumonia (disorder)"
+						},
+						{
+							"system": "http://hl7.org/fhir/sid/icd-9-cm/diagnosis",
+							"code": "486",
+							"display": "Pneumonia, organism unspecified"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "J18.9",
+							"display": "Pneumonia, organism unspecified"
+						}],
+						"text": "Pneumonia, organism unspecified"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"context": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/ePbIBGicRZQDxzFPlYRzAyA3"
+					}
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eq4ox4rOqSHrjvL.cj4bhNq-zPY2XwouUo0LRp5KvxMMeyWF0IGB6YMC8m2sdsbeHKt6IuqPKBWcBaaw-YciW7Q3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eq4ox4rOqSHrjvL.cj4bhNq-zPY2XwouUo0LRp5KvxMMeyWF0IGB6YMC8m2sdsbeHKt6IuqPKBWcBaaw-YciW7Q3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "eq4ox4rOqSHrjvL.cj4bhNq-zPY2XwouUo0LRp5KvxMMeyWF0IGB6YMC8m2sdsbeHKt6IuqPKBWcBaaw-YciW7Q3",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "encounter-diagnosis",
+							"display": "Encounter Diagnosis"
+						}],
+						"text": "Encounter Diagnosis"
+					},
+					{
+						"coding": [{
+							"system": "http://open.epic.com/FHIR/STU3/StructureDefinition/condition-category",
+							"code": "visit-diagnosis",
+							"display": "Visit Diagnosis"
+						}],
+						"text": "Visit Diagnosis"
+					}],
+					"code": {
+						"coding": [{
+							"system": "http://snomed.info/sct",
+							"code": "235595009",
+							"display": "Gastroesophageal reflux disease (disorder)"
+						},
+						{
+							"system": "http://hl7.org/fhir/sid/icd-9-cm/diagnosis",
+							"code": "530.81",
+							"display": "GERD (gastroesophageal reflux disease)"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "K21.9",
+							"display": "GERD (gastroesophageal reflux disease)"
+						}],
+						"text": "GERD (gastroesophageal reflux disease)"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"context": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/ePbIBGicRZQDxzFPlYRzAyA3"
+					},
+					"note": [{
+						"text": "GERD, diagnosed by EGD. Symptoms well controlled with intermittent use of H2 blockers"
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			},
+			{
+				"link": [{
+					"relation": "self",
+					"url": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eq4ox4rOqSHrjvL.cj4bhNvGvgE37IXuXSvW4lvYFcbkHEY8VGA7pSCvHW.qWz-yIL9V21qAo.vaQn2FWRvezBg3"
+				}],
+				"fullUrl": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Condition/eq4ox4rOqSHrjvL.cj4bhNvGvgE37IXuXSvW4lvYFcbkHEY8VGA7pSCvHW.qWz-yIL9V21qAo.vaQn2FWRvezBg3",
+				"resource": {
+					"resourceType": "Condition",
+					"id": "eq4ox4rOqSHrjvL.cj4bhNvGvgE37IXuXSvW4lvYFcbkHEY8VGA7pSCvHW.qWz-yIL9V21qAo.vaQn2FWRvezBg3",
+					"category": [{
+						"coding": [{
+							"system": "http://hl7.org/fhir/condition-category",
+							"code": "encounter-diagnosis",
+							"display": "Encounter Diagnosis"
+						}],
+						"text": "Encounter Diagnosis"
+					},
+					{
+						"coding": [{
+							"system": "http://open.epic.com/FHIR/STU3/StructureDefinition/condition-category",
+							"code": "visit-diagnosis",
+							"display": "Visit Diagnosis"
+						}],
+						"text": "Visit Diagnosis"
+					}],
+					"code": {
+						"coding": [{
+							"system": "http://snomed.info/sct",
+							"code": "312342009",
+							"display": "Infective pneumonia (disorder)"
+						},
+						{
+							"system": "http://hl7.org/fhir/sid/icd-9-cm/diagnosis",
+							"code": "486",
+							"display": "Pneumonia due to organism"
+						},
+						{
+							"system": "urn:oid:2.16.840.1.113883.6.90",
+							"code": "J18.9",
+							"display": "Pneumonia due to organism"
+						}],
+						"text": "Pneumonia due to organism"
+					},
+					"subject": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Patient/eeR.6U3L89G5HUPy5ijb7YQ3",
+						"display": "Integration, Phil"
+					},
+					"context": {
+						"reference": "https://apporchard.epic.com/interconnect-aocurprd-oauth/api/FHIR/STU3/Encounter/ePbIBGicRZQDxzFPlYRzAyA3"
+					},
+					"note": [{
+						"text": "Pneumonia due to organism"
+					}]
+				},
+				"search": {
+					"mode": "match"
+				}
+			}]
+		}
+	}
+}

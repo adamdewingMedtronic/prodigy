@@ -43,7 +43,6 @@ public class ProdigyService implements IProdigyService {
 
         try {
             ObjectMapper objectMapper = new ObjectMapper();
-            System.out.println(request.getPrefetch().getPatient());
             if (request.getPrefetch() != null) {
                 if (request.getPrefetch().getPatient() != null) {
                     patient = parser.parseResource(Patient.class, objectMapper.writeValueAsString(request.getPrefetch().getPatient()));
@@ -95,7 +94,6 @@ public class ProdigyService implements IProdigyService {
         html = setOpiodNaiveRiskCss(opiodNaiveRisk.getScore(), html);
         html = setSexRiskCss(sexRisk.getScore(), html);
         html = setSleepDisorderRiskCss(sleepDisorderRisk.getScore(), html);
-        System.out.println(html);
         /***************************************/
 
         card.setSummary(riskText.getText());
@@ -396,7 +394,7 @@ public class ProdigyService implements IProdigyService {
     private String setSleepDisorderRiskCss(int sleepDisorderRisk, String html) {
         if (sleepDisorderRisk > 0) {
             html = html.replaceAll("SLEEP_DISORDER_YES", "risk");
-            html = html.replaceAll("SLEEP_DISORDER_No", "");
+            html = html.replaceAll("SLEEP_DISORDER_NO", "");
         } else {
             html = html.replaceAll("SLEEP_DISORDER_YES", "");
             html = html.replaceAll("SLEEP_DISORDER_NO", "risk");
