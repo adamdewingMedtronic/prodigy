@@ -67,12 +67,12 @@ public class ProdigyService implements IProdigyService {
 
     private String buildHTML(List<Risk> risks, int riskScore, String riskText){
         String html = getBaseHtml();
-        html.replaceAll("RISK_TEXT", riskText);
+        html = html.replaceAll("RISK_TEXT", riskText);
         html.replaceAll("RISK_SCORE", String.valueOf(riskScore));
         if(riskScore >= 8){
-            html.replaceAll("CAPNOGRAPHY_MONITORING", "Consider placing the patient on capnography monitoring.");
+            html = html.replaceAll("CAPNOGRAPHY_MONITORING", "Consider placing the patient on capnography monitoring.");
         }else{
-            html.replaceAll("CAPNOGRAPHY_MONITORING", "");
+            html = html.replaceAll("CAPNOGRAPHY_MONITORING", "");
         }
         System.out.println(html);
         return html;
@@ -194,10 +194,10 @@ public class ProdigyService implements IProdigyService {
                 "\t\t<div style=\\\"height:240px; width: 45%; background: clear; float: left;\\\">\n" +
                 "\t\t\t<div                style=\\\"height:80px; width:80px; text-align: center; background: #E30504; border-radius: 80px; font-size: 36px; font-weight: bold; color: #fff; line-height: 80px; margin: auto;\\\">20            </div>\n" +
                 "\t\t\t<h4 style=\\\"color: black; font-weight: lighter;\\\">PRODIGY SCORE</h4>\n" +
-                "\t\t\t<h4 style=\\\"color: #E30504;\\\">${risk_text}</h4>\n" +
+                "\t\t\t<h4 style=\\\"color: #E30504;\\\">RISK_SCORE</h4>\n" +
                 "\t\t</div>\n" +
                 "\t\t<div style=\\\"height:240px; width: 55%; background: clear; float: left;\\\">\n" +
-                "\t\t\t<p style=\\\"color: black; text-align: left;\\\">This patient is at ${risk_text} for opioid-induced respiratory depression. Consider placing the patient on capnography monitoring.</p>\n" +
+                "\t\t\t<p style=\\\"color: black; text-align: left;\\\">This patient is at RISK_TEXT for opioid-induced respiratory depression. CAPNOGRAPHY_MONITORING</p>\n" +
                 "\t\t\t<p style=\\\"color: #308DCD; text-align: left;\\\">Capnography Monitoring Policy</p>\n" +
                 "\t\t\t<p style=\\\"text-align: left;\\\">\n" +
                 "\t\t\t\t<a style=\\\"color: #308DCD;\\\" href=\\\"https://www.medtronic.com/content/dam/covidien/library/us/en/product/capnography-monitoring/microstream-capnography-breath-monitoring-matters-info-sheet.pdf\\\" target=\\\"_blank\\\" rel=\\\"noopener noreferrer\\\">About Capnography</a>\n" +
