@@ -103,7 +103,6 @@ public class ProdigyService implements IProdigyService {
 
     private int ageRiskCategory(Patient patient) {
         int age = getAge(patient);
-        System.out.println("Patient's age is:" + age);
         if (age >= 80) {
             return 4;
         } else if (age >= 70) {
@@ -274,7 +273,6 @@ public class ProdigyService implements IProdigyService {
 
     private String getSex(Patient patient) {
         PatientHelper patientHelper = new PatientHelper(patient);
-        System.out.println("Patient's gender is: " + patientHelper.getGender());
         return patientHelper.getGender();
     }
 
@@ -297,7 +295,6 @@ public class ProdigyService implements IProdigyService {
         String data = parser.encodeResourceToString(bundle);
         for (String value : HeartFailureCodes.values) {
             if (data.contains(value)) {
-                System.out.println("Found chronic heart failure code: " + value);
                 return true;
             }
         }
@@ -318,7 +315,6 @@ public class ProdigyService implements IProdigyService {
         data = parser.encodeResourceToString(bundle);
         for (String value : OpiodCodes.values) {
             if (data.contains(value)) {
-                System.out.println("Found opiod code: " + value);
                 return false;
             }
         }
@@ -332,7 +328,6 @@ public class ProdigyService implements IProdigyService {
         String data = parser.encodeResourceToString(bundle);
         for (String value : SleepDisorderCodes.values) {
             if (data.contains(value)) {
-                System.out.println("Found sleep disorder code: " + value);
                 return true;
             }
         }
