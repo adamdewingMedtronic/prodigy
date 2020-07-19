@@ -2,7 +2,9 @@ package com.mdt.prodigy.service;
 
 import com.mdt.prodigy.dto.discovery.CDSServices;
 import com.mdt.prodigy.dto.discovery.ProdigyCDSService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DiscoveryService implements IDiscoveryService{
 
     public CDSServices getDiscoveryEndpoints() {

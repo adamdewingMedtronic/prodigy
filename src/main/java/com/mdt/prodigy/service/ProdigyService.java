@@ -17,10 +17,12 @@ import com.mdt.prodigy.enums.RiskText;
 import com.mdt.prodigy.enums.RiskType;
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.Patient;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ProdigyService implements IProdigyService {
 
     FhirContext ctx = null;
@@ -151,123 +153,123 @@ public class ProdigyService implements IProdigyService {
     }
 
     private String getBaseHtml() {
-        return "<style>\n" +
-                "    .red {\n" +
-                "        background: red;\n" +
-                "    }\n" +
-                "    .yellow{\n" +
-                "        background: #FACE03;\n" +
-                "    }\n" +
-                "    .green {\n" +
-                "        background: green;\n" +
-                "    }\n" +
-                "    .risk{\n" +
-                "        color: black;\n" +
-                "        background: #FACE03;\n" +
-                "    }\n" +
-                "</style>\n" +
-                "<div style=\"width: 700px; background: #FFFFF7;\">\n" +
-                "    <div style=\"height: 80px; font-size:24px; font-weight: bold; line-height: 40px; padding-left: 40px; color: black;\"> PRODIGY</div>\n" +
-                "    <div style=\"height:220px; width: 80%; text-align: center; background: clear; margin: auto;\">\n" +
-                "        <div style=\"height:240px; width: 45%; background: clear; float: left;\">\n" +
-                "            <div class=\"RISK_COLOR\" style=\"height:80px; width:80px; text-align: center; border-radius: 80px; font-size: 36px; font-weight: bold; color: #fff; line-height: 80px; margin: auto;\">RISK_SCORE</div>\n" +
-                "            <h4 style=\"color: black; font-weight: lighter;\">PRODIGY SCORE</h4>\n" +
-                "        </div>\n" +
-                "        <div style=\"height:240px; width: 55%; background: clear; float: left;\">\n" +
-                "            <p style=\"color: black; text-align: left;\">This patient is at <b>RISK_TEXT</b> for opioid-induced respiratory depression. CAPNOGRAPHY_MONITORING</p>\n" +
-                "            <p style=\"color: #308DCD; text-align: left;\">Capnography Monitoring Policy</p>\n" +
-                "            <p style=\"text-align: left;\">\n" +
-                "                <a style=\"color: #308DCD;\" href=\"https://www.medtronic.com/content/dam/covidien/library/us/en/product/capnography-monitoring/microstream-capnography-breath-monitoring-matters-info-sheet.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">About Capnography</a>\n" +
-                "            </p>\n" +
-                "            <div style=\"height:55px; width: 100%; background: #EEEEEE;\">\n" +
-                "                <table style=\"width: 100%; height: 100%; font-size: 11px\">\n" +
-                "                    <tr>\n" +
-                "                        <td colspan=\"3\" style=\"font-weight: bold; color: grey; text-align: left;\">SCORE TIER LEGEND</td>\n" +
-                "                    </tr>\n" +
-                "                    <tr>\n" +
-                "                        <td style=\"text-align: left; color: grey; line-height: 12px;\">\n" +
-                "                            <div style=\"height:12px; width:12px; background: #77BC1F; border-radius: 12px; line-height: 12px; float: left;\"></div>\n" +
-                "                            <span style=\"padding-left: 4px;\">0-7</span>\n" +
-                "                            <span style=\"font-weight: bold; padding-left: 4px;\">Low</span>\n" +
-                "                        </td>\n" +
-                "                        <td style=\"text-align: left; color: grey; line-height: 12px;\">\n" +
-                "                            <div style=\"height:12px; width:12px; background: #F7A801; border-radius: 12px; line-height: 12px; float: left;\"></div>\n" +
-                "                            <span style=\"padding-left: 4px;\">8-14</span>\n" +
-                "                            <span style=\"font-weight: bold; padding-left: 4px;\">Intermediate</span>\n" +
-                "                        </td>\n" +
-                "                        <td style=\"text-align: left; color: grey; line-height: 12px;\">\n" +
-                "                            <div style=\"height:12px; width:12px; background: #E30504; border-radius: 12px; line-height: 12px; float: left;\"></div>\n" +
-                "                            <span style=\"padding-left: 4px;\">15+</span>\n" +
-                "                            <span style=\"font-weight: bold; padding-left: 4px;\">High</span>\n" +
-                "                        </td>\n" +
-                "                    </tr>\n" +
-                "                </table>\n" +
-                "            </div>\n" +
-                "        </div>\n" +
-                "    </div>\n" +
-                "    <div style=\"height:200px; width: 80%; background: clear; margin: auto;\">\n" +
-                "        <table style=\"width: 100%; color: gray\">\n" +
-                "            <tr>\n" +
-                "                <td style=\"font-weight: bold; color: grey; width: 45%;\">COMPONENT</td>\n" +
-                "                <td colspan=\"2\" style=\"color: grey;\">\n" +
-                "                    <span style=\"font-weight: bold;\"> SCORE</span> / VALUE\n" +
-                "                </td>\n" +
-                "            </tr>\n" +
-                "            <tr>\n" +
-                "                <td rowspan=\"2\" style=\"font-weight: bold; color: black;\">Age</td>\n" +
-                "                <td class=\"AGE_RISK4\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">16</span>80 +\n" +
-                "                </td>\n" +
-                "                <td class=\"AGE_RISK2\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">8</span>60 - 69\n" +
-                "                </td>\n" +
-                "            </tr>\n" +
-                "            <tr>\n" +
-                "                <td class=\"AGE_RISK3\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">12</span>70 - 79\n" +
-                "                </td>\n" +
-                "                <td class=\"AGE_RISK1\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>< 60\n" +
-                "                </td>\n" +
-                "            </tr>\n" +
-                "            <tr>\n" +
-                "                <td style=\"font-weight: bold; color: black;\">Sex</td>\n" +
-                "                <td class=\"SEX_RISK_MALE\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">8</span>Male\n" +
-                "                </td>\n" +
-                "                <td class=\"SEX_RISK_FEMALE\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>Female or Unk\n" +
-                "                </td>\n" +
-                "            </tr>\n" +
-                "            <tr>\n" +
-                "                <td style=\"font-weight: bold; color: black;\">Opioid Naive</td>\n" +
-                "                <td class=\"OPIOD_NAIVE_RISK_YES\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">3</span>Yes\n" +
-                "                </td>\n" +
-                "                <td class=\"OPIOD_NAIVE_RISK_NO\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No\n" +
-                "                </td>\n" +
-                "            </tr>\n" +
-                "            <tr>\n" +
-                "                <td style=\"font-weight: bold; color: black;\">Sleep Disorder</td>\n" +
-                "                <td class=\"SLEEP_DISORDER_YES\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">5</span>Yes\n" +
-                "                </td>\n" +
-                "                <td class=\"SLEEP_DISORDER_NO\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No\n" +
-                "                </td>\n" +
-                "            </tr>\n" +
-                "            <tr>\n" +
-                "                <td style=\"font-weight: bold; color: black;\">Chronic Heart Failure</td>\n" +
-                "                <td class=\"CHRONIC_HEART_FAILURE_RISK_YES\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">7</span>Yes\n" +
-                "                </td>\n" +
-                "                <td class=\"CHRONIC_HEART_FAILURE_RISK_NO\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No\n" +
-                "                </td>\n" +
-                "            </tr>\n" +
-                "        </table>\n" +
-                "    </div>\n" +
+        return "<style>" +
+                "    .red {" +
+                "        background: red;" +
+                "    }" +
+                "    .yellow{" +
+                "        background: #FACE03;" +
+                "    }" +
+                "    .green {" +
+                "        background: green;" +
+                "    }" +
+                "    .risk{" +
+                "        color: black;" +
+                "        background: #FACE03;" +
+                "    }" +
+                "</style>" +
+                "<div style=\"width: 700px; background: #FFFFF7;\">" +
+                "    <div style=\"height: 80px; font-size:24px; font-weight: bold; line-height: 40px; padding-left: 40px; color: black;\"> PRODIGY</div>" +
+                "    <div style=\"height:220px; width: 80%; text-align: center; background: clear; margin: auto;\">" +
+                "        <div style=\"height:240px; width: 45%; background: clear; float: left;\">" +
+                "            <div class=\"RISK_COLOR\" style=\"height:80px; width:80px; text-align: center; border-radius: 80px; font-size: 36px; font-weight: bold; color: #fff; line-height: 80px; margin: auto;\">RISK_SCORE</div>" +
+                "            <h4 style=\"color: black; font-weight: lighter;\">PRODIGY SCORE</h4>" +
+                "        </div>" +
+                "        <div style=\"height:240px; width: 55%; background: clear; float: left;\">" +
+                "            <p style=\"color: black; text-align: left;\">This patient is at <b>RISK_TEXT</b> for opioid-induced respiratory depression. CAPNOGRAPHY_MONITORING</p>" +
+                "            <p style=\"color: #308DCD; text-align: left;\">Capnography Monitoring Policy</p>" +
+                "            <p style=\"text-align: left;\">" +
+                "                <a style=\"color: #308DCD;\" href=\"https://www.medtronic.com/content/dam/covidien/library/us/en/product/capnography-monitoring/microstream-capnography-breath-monitoring-matters-info-sheet.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">About Capnography</a>" +
+                "            </p>" +
+                "            <div style=\"height:55px; width: 100%; background: #EEEEEE;\">" +
+                "                <table style=\"width: 100%; height: 100%; font-size: 11px\">" +
+                "                    <tr>" +
+                "                        <td colspan=\"3\" style=\"font-weight: bold; color: grey; text-align: left;\">SCORE TIER LEGEND</td>" +
+                "                    </tr>" +
+                "                    <tr>" +
+                "                        <td style=\"text-align: left; color: grey; line-height: 12px;\">" +
+                "                            <div style=\"height:12px; width:12px; background: #77BC1F; border-radius: 12px; line-height: 12px; float: left;\"></div>" +
+                "                            <span style=\"padding-left: 4px;\">0-7</span>" +
+                "                            <span style=\"font-weight: bold; padding-left: 4px;\">Low</span>" +
+                "                        </td>" +
+                "                        <td style=\"text-align: left; color: grey; line-height: 12px;\">" +
+                "                            <div style=\"height:12px; width:12px; background: #F7A801; border-radius: 12px; line-height: 12px; float: left;\"></div>" +
+                "                            <span style=\"padding-left: 4px;\">8-14</span>" +
+                "                            <span style=\"font-weight: bold; padding-left: 4px;\">Intermediate</span>" +
+                "                        </td>" +
+                "                        <td style=\"text-align: left; color: grey; line-height: 12px;\">" +
+                "                            <div style=\"height:12px; width:12px; background: #E30504; border-radius: 12px; line-height: 12px; float: left;\"></div>" +
+                "                            <span style=\"padding-left: 4px;\">15+</span>" +
+                "                            <span style=\"font-weight: bold; padding-left: 4px;\">High</span>" +
+                "                        </td>" +
+                "                    </tr>" +
+                "                </table>" +
+                "            </div>" +
+                "        </div>" +
+                "    </div>" +
+                "    <div style=\"height:200px; width: 80%; background: clear; margin: auto;\">" +
+                "        <table style=\"width: 100%; color: gray\">" +
+                "            <tr>" +
+                "                <td style=\"font-weight: bold; color: grey; width: 45%;\">COMPONENT</td>" +
+                "                <td colspan=\"2\" style=\"color: grey;\">" +
+                "                    <span style=\"font-weight: bold;\"> SCORE</span> / VALUE" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td rowspan=\"2\" style=\"font-weight: bold; color: black;\">Age</td>" +
+                "                <td class=\"AGE_RISK4\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">16</span>80 +" +
+                "                </td>" +
+                "                <td class=\"AGE_RISK2\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">8</span>60 - 69" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td class=\"AGE_RISK3\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">12</span>70 - 79" +
+                "                </td>" +
+                "                <td class=\"AGE_RISK1\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>< 60" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td style=\"font-weight: bold; color: black;\">Sex</td>" +
+                "                <td class=\"SEX_RISK_MALE\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">8</span>Male" +
+                "                </td>" +
+                "                <td class=\"SEX_RISK_FEMALE\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>Female or Unk" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td style=\"font-weight: bold; color: black;\">Opioid Naive</td>" +
+                "                <td class=\"OPIOD_NAIVE_RISK_YES\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">3</span>Yes" +
+                "                </td>" +
+                "                <td class=\"OPIOD_NAIVE_RISK_NO\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td style=\"font-weight: bold; color: black;\">Sleep Disorder</td>" +
+                "                <td class=\"SLEEP_DISORDER_YES\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">5</span>Yes" +
+                "                </td>" +
+                "                <td class=\"SLEEP_DISORDER_NO\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No" +
+                "                </td>" +
+                "            </tr>" +
+                "            <tr>" +
+                "                <td style=\"font-weight: bold; color: black;\">Chronic Heart Failure</td>" +
+                "                <td class=\"CHRONIC_HEART_FAILURE_RISK_YES\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">7</span>Yes" +
+                "                </td>" +
+                "                <td class=\"CHRONIC_HEART_FAILURE_RISK_NO\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No" +
+                "                </td>" +
+                "            </tr>" +
+                "        </table>" +
+                "    </div>" +
                 "</div>";
     }
 

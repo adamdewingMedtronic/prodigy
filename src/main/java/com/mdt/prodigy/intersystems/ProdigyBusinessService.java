@@ -16,7 +16,7 @@ public class ProdigyBusinessService extends BaseIntersystemsService {
 
 
     public Object OnProcessInput(Object messageInput) throws Exception {
-        
-        return null;
+
+        return "Hello World";
     }
 }

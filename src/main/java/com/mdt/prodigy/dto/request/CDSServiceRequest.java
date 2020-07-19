@@ -20,5 +20,4 @@ public class CDSServiceRequest {
     private FhirAuthorization fhirAuthorization;   // OPTIONAL - structure with FHIR Authorization information for the above url
     private Map<String, Object> context;             // REQUIRED - hook-specific contextual data
     private ProdigyPrefetchRequest prefetch;            // OPTIONAL - FHIR data prefetched by the CDS Client
-
 }
