@@ -38,98 +38,100 @@ class ProdigyServiceTest {
     public void getORIDCards_age_30(){
         Cards cards = getORIDCards("sample_input_30.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>< 60\n" +
+        String expected = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>< 60" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
+        FileUtil.save("c:/Temp/test_age_30.html", html);
     }
+
     @Test
     public void getORIDCards_age_60(){
         Cards cards = getORIDCards("sample_input_60.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">8</span>60 - 69\n" +
+        String expected = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">8</span>60 - 69" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
     }
     @Test
     public void getORIDCards_age_70(){
         Cards cards = getORIDCards("sample_input_70.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">12</span>70 - 79\n" +
+        String expected = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">12</span>70 - 79" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
     }
     @Test
     public void getORIDCards_age_80(){
         Cards cards = getORIDCards("sample_input_80.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">16</span>80 +\n" +
+        String expected = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">16</span>80 +" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
     }
     @Test
     public void getORIDCards_chronic_heart_failure(){
         Cards cards = getORIDCards("sample_input_chronic_heart_failure.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected1 = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">7</span>Yes\n" +
+        String expected1 = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">7</span>Yes" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected1), "The following string did not contain: " + expected1 + " \n\n" + html);
-        String expected2 = "                <td class=\"\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No\n" +
+        Assertions.assertEquals(true, html.contains(expected1), "The following string did not contain: " + expected1 + " " + html);
+        String expected2 = "                <td class=\"\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected1), "The following string did not contain: " + expected2 + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected1), "The following string did not contain: " + expected2 + " " + html);
     }
     @Test
     public void getORIDCards_input_female(){
         Cards cards = getORIDCards("sample_input_female.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected = "                <td class=\"\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">8</span>Male\n" +
-                "                </td>\n" +
-                "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>Female or Unk\n" +
+        String expected = "                <td class=\"\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">8</span>Male" +
+                "                </td>" +
+                "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>Female or Unk" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
     }
     @Test
     public void getORIDCards_input_male_opiod_naive_30(){
         Cards cards = getORIDCards("sample_input_male_opiod_naive_30.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">3</span>Yes\n" +
-                "                </td>\n" +
-                "                <td class=\"\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No\n" +
+        String expected = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">3</span>Yes" +
+                "                </td>" +
+                "                <td class=\"\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
-        expected = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>< 60\n" +
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
+        expected = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>< 60" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
-        expected = "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">8</span>Male\n" +
-                "                </td>\n" +
-                "                <td class=\"\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>Female or Unk\n" +
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
+        expected = "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">8</span>Male" +
+                "                </td>" +
+                "                <td class=\"\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>Female or Unk" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
     }
     @Test
     public void getORIDCards_sleep_disorder(){
         Cards cards = getORIDCards("sample_input_sleep_disorder.json");
         String html = cards.getCards().get(0).getDetail();
-        String expected = "                <td style=\"font-weight: bold; color: black;\">Sleep Disorder</td>\n" +
-                "                <td class=\"risk\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">5</span>Yes\n" +
-                "                </td>\n" +
-                "                <td class=\"\">\n" +
-                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No\n" +
+        String expected = "                <td style=\"font-weight: bold; color: black;\">Sleep Disorder</td>" +
+                "                <td class=\"risk\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 26px; padding-left: 4px;\">5</span>Yes" +
+                "                </td>" +
+                "                <td class=\"\">" +
+                "                    <span style=\"font-weight: bold; padding-right: 20px; padding-left: 4px;\">0</span>No" +
                 "                </td>";
-        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " \n\n" + html);
+        Assertions.assertEquals(true, html.contains(expected), "The following string did not contain: " + expected + " " + html);
 
     }
 
