@@ -17,7 +17,7 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<hapi.version>4.2.0</hapi.version>
-		<jackson.version>2.11.0</jackson.version>
+		<jackson.version>2.12.6.1</jackson.version>
 		<slf4j.version>1.6.1</slf4j.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<iris.health.jars>${project.basedir}/src/main/resources</iris.health.jars>
